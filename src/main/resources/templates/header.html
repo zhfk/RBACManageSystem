@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet" />
+    <title>header</title>
+</head>
+<body>
+    <div th:fragment="header">
+        <div class="layui-header header header-demo" summer>
+            <div class="layui-main">
+                <div class="layui-logo">
+                    <a th:href="@{/}">
+                        <i class="layui-icon layui-icon-auz" style="font-size: 25px;">RBAC Manager</i>
+                    </a>
+                </div>
+                <!-- 头部区域（可配合layui已有的水平导航） -->
+                <ul class="layui-nav layui-layout-left">
+                    <li class="layui-nav-item">
+                        <a th:href="@{/}">
+                            <i class="layui-icon layui-icon-chart" style="font-size: 15px;"> 关系展示</i>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a th:href="@{/search}">
+                            <i class="layui-icon layui-icon-search" style="font-size: 15px;"> 搜索</i>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a th:href="@{/log}">
+                            <i class="layui-icon layui-icon-list" style="font-size: 15px;"> 日志</i>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">
+                            <i class="layui-icon layui-icon-about" style="font-size: 15px;"> 其它</i>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="https://zhfk.github.io" target="_blank">帮助</a></dd>
+                            <dd><a th:href="@{/about}">关于</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+                <ul class="layui-nav layui-layout-right">
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="layui-icon layui-icon-username" style="font-size: 20px;">Administrator</i></a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a th:href="@{/user/info}">个人信息</a>
+                            </dd>
+                            <dd>
+                                <a th:href="@{/login}">退出登陆</a>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

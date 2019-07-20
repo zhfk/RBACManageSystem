@@ -1,0 +1,294 @@
+2019/07/17-16:21 [main] INFO  com.inc.yitu.bigdata.BigdataApplication- Starting BigdataApplication on YL-Ubuntu019 with PID 3253 (/home/hefeng.zhang/IdeaProjects/bigdata/out/production/classes started by hefeng.zhang in /home/hefeng.zhang/IdeaProjects/bigdata)
+2019/07/17-16:21 [main] INFO  com.inc.yitu.bigdata.BigdataApplication- No active profile set, falling back to default profiles: default
+2019/07/17-16:21 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Bootstrapping Spring Data repositories in DEFAULT mode.
+2019/07/17-16:21 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Finished Spring Data repository scanning in 62ms. Found 1 repository interfaces.
+2019/07/17-16:21 [main] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker- Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$863c32ae] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019/07/17-16:21 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer- Tomcat initialized with port(s): 8888 (http)
+2019/07/17-16:21 [main] INFO  org.apache.catalina.core.StandardService- Starting service [Tomcat]
+2019/07/17-16:21 [main] INFO  org.apache.catalina.core.StandardEngine- Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019/07/17-16:21 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]- Initializing Spring embedded WebApplicationContext
+2019/07/17-16:21 [main] INFO  org.springframework.web.context.ContextLoader- Root WebApplicationContext: initialization completed in 2043 ms
+2019/07/17-16:21 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
+2019/07/17-16:21 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
+2019/07/17-16:21 [main] INFO  org.hibernate.jpa.internal.util.LogHelper- HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019/07/17-16:21 [main] INFO  org.hibernate.Version- HHH000412: Hibernate Core {5.3.10.Final}
+2019/07/17-16:21 [main] INFO  org.hibernate.cfg.Environment- HHH000206: hibernate.properties not found
+2019/07/17-16:21 [main] INFO  org.hibernate.annotations.common.Version- HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019/07/17-16:21 [main] INFO  org.hibernate.dialect.Dialect- HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2019/07/17-16:21 [main] INFO  org.hibernate.tool.schema.internal.SchemaCreatorImpl- HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@7c5f29c6'
+2019/07/17-16:21 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean- Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019/07/17-16:21 [main] INFO  org.casbin.jcasbin- Model:
+2019/07/17-16:21 [main] INFO  org.casbin.jcasbin- p.p: sub, obj, act
+2019/07/17-16:21 [main] INFO  org.casbin.jcasbin- r.r: sub, obj, act
+2019/07/17-16:21 [main] INFO  org.casbin.jcasbin- e.e: some(where (p_eft == allow))
+2019/07/17-16:21 [main] INFO  org.casbin.jcasbin- g.g: _, _
+2019/07/17-16:21 [main] INFO  org.casbin.jcasbin- m.m: g(r_sub, p_sub) && r_obj == p_obj && r_act == p_act
+2019/07/17-16:21 [main] INFO  org.casbin.jcasbin- Policy:
+2019/07/17-16:21 [main] INFO  org.casbin.jcasbin- p: sub, obj, act: [[alice, data, read], [bob, data, read], [data2_admin, data, write]]
+2019/07/17-16:21 [main] INFO  org.casbin.jcasbin- g: _, _: [[alice, data2_admin]]
+2019/07/17-16:21 [main] INFO  org.casbin.jcasbin- Role links for: g
+2019/07/17-16:21 [main] INFO  org.casbin.jcasbin- alice < data2_admin
+2019/07/17-16:21 [main] INFO  org.casbin.jcasbin- data2_admin < 
+2019/07/17-16:21 [main] INFO  org.casbin.spring.boot.autoconfigure.CasbinAutoConfiguration- Casbin use SyncedEnforcer
+2019/07/17-16:21 [main] WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration- spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019/07/17-16:21 [main] INFO  springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping- Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019/07/17-16:21 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor- Initializing ExecutorService 'applicationTaskExecutor'
+2019/07/17-16:21 [main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper- Context refreshed
+2019/07/17-16:21 [main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper- Found 1 custom documentation plugin(s)
+2019/07/17-16:21 [main] INFO  springfox.documentation.spring.web.scanners.ApiListingReferenceScanner- Scanning for api listing references
+2019/07/17-16:21 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer- Tomcat started on port(s): 8888 (http) with context path ''
+2019/07/17-16:21 [main] INFO  com.inc.yitu.bigdata.BigdataApplication- Started BigdataApplication in 5.588 seconds (JVM running for 5.944)
+2019/07/17-16:22 [Thread-3] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor- Shutting down ExecutorService 'applicationTaskExecutor'
+2019/07/17-16:22 [Thread-3] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean- Closing JPA EntityManagerFactory for persistence unit 'default'
+2019/07/17-16:22 [Thread-3] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Shutdown initiated...
+2019/07/17-16:22 [Thread-3] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Shutdown completed.
+2019-07-17 16:22:08.984  INFO 3339 --- [main] com.inc.yitu.bigdata.BigdataApplication  : Starting BigdataApplication on YL-Ubuntu019 with PID 3339 (/home/hefeng.zhang/IdeaProjects/bigdata/out/production/classes started by hefeng.zhang in /home/hefeng.zhang/IdeaProjects/bigdata)
+2019-07-17 16:22:08.986  INFO 3339 --- [main] com.inc.yitu.bigdata.BigdataApplication  : No active profile set, falling back to default profiles: default
+2019-07-17 16:22:09.955  INFO 3339 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-07-17 16:22:10.003  INFO 3339 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41ms. Found 1 repository interfaces.
+2019-07-17 16:22:10.313  INFO 3339 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$ee320c46] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-07-17 16:22:10.566  INFO 3339 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8888 (http)
+2019-07-17 16:22:10.588  INFO 3339 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-17 16:22:10.588  INFO 3339 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-07-17 16:22:10.746  INFO 3339 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-17 16:22:10.746  INFO 3339 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1718 ms
+2019-07-17 16:22:10.885  INFO 3339 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-07-17 16:22:11.001  INFO 3339 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-07-17 16:22:11.039  INFO 3339 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-07-17 16:22:11.095  INFO 3339 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.10.Final}
+2019-07-17 16:22:11.096  INFO 3339 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-07-17 16:22:11.223  INFO 3339 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-07-17 16:22:11.350  INFO 3339 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2019-07-17 16:22:11.989  INFO 3339 --- [main] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@35e2b89f'
+2019-07-17 16:22:11.994  INFO 3339 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-07-17 16:22:12.069  INFO 3339 --- [main] org.casbin.jcasbin                       : Model:
+2019-07-17 16:22:12.069  INFO 3339 --- [main] org.casbin.jcasbin                       : p.p: sub, obj, act
+2019-07-17 16:22:12.069  INFO 3339 --- [main] org.casbin.jcasbin                       : r.r: sub, obj, act
+2019-07-17 16:22:12.070  INFO 3339 --- [main] org.casbin.jcasbin                       : e.e: some(where (p_eft == allow))
+2019-07-17 16:22:12.070  INFO 3339 --- [main] org.casbin.jcasbin                       : g.g: _, _
+2019-07-17 16:22:12.070  INFO 3339 --- [main] org.casbin.jcasbin                       : m.m: g(r_sub, p_sub) && r_obj == p_obj && r_act == p_act
+2019-07-17 16:22:12.193  INFO 3339 --- [main] org.casbin.jcasbin                       : Policy:
+2019-07-17 16:22:12.193  INFO 3339 --- [main] org.casbin.jcasbin                       : p: sub, obj, act: [[alice, data, read], [bob, data, read], [data2_admin, data, write]]
+2019-07-17 16:22:12.193  INFO 3339 --- [main] org.casbin.jcasbin                       : g: _, _: [[alice, data2_admin]]
+2019-07-17 16:22:12.194  INFO 3339 --- [main] org.casbin.jcasbin                       : Role links for: g
+2019-07-17 16:22:12.194  INFO 3339 --- [main] org.casbin.jcasbin                       : alice < data2_admin
+2019-07-17 16:22:12.194  INFO 3339 --- [main] org.casbin.jcasbin                       : data2_admin < 
+2019-07-17 16:22:12.194  INFO 3339 --- [main] o.c.s.b.a.CasbinAutoConfiguration        : Casbin use SyncedEnforcer
+2019-07-17 16:22:12.597  WARN 3339 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-07-17 16:22:12.702  INFO 3339 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-07-17 16:22:12.829  INFO 3339 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-07-17 16:22:13.110  INFO 3339 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-07-17 16:22:13.128  INFO 3339 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-07-17 16:22:13.151  INFO 3339 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-07-17 16:22:13.309  INFO 3339 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8888 (http) with context path ''
+2019-07-17 16:22:13.312  INFO 3339 --- [main] com.inc.yitu.bigdata.BigdataApplication  : Started BigdataApplication in 4.872 seconds (JVM running for 5.215)
+2019-07-17 16:22:36.778  INFO 3339 --- [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-07-17 16:22:36.778  INFO 3339 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-07-17 16:22:36.807  INFO 3339 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 29 ms
+2019-07-17 16:22:36.881  INFO 3339 --- [http-nio-8888-exec-1] org.casbin.jcasbin                       : Request: alice, data, write ---> true
+2019-07-17 16:22:41.837  INFO 3339 --- [http-nio-8888-exec-2] org.casbin.jcasbin                       : Request: alice, data, write ---> true
+2019-07-17 16:22:42.648  INFO 3339 --- [http-nio-8888-exec-3] org.casbin.jcasbin                       : Request: alice, data, write ---> true
+2019-07-17 16:24:48.370  INFO 3339 --- [Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-07-17 16:24:48.374  INFO 3339 --- [Thread-3] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-07-17 16:24:48.380  INFO 3339 --- [Thread-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-07-17 16:24:48.385  INFO 3339 --- [Thread-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-07-17 16:24:52.115  INFO 4051 --- [main] com.inc.yitu.bigdata.BigdataApplication  : Starting BigdataApplication on YL-Ubuntu019 with PID 4051 (/home/hefeng.zhang/IdeaProjects/bigdata/out/production/classes started by hefeng.zhang in /home/hefeng.zhang/IdeaProjects/bigdata)
+2019-07-17 16:24:52.117  INFO 4051 --- [main] com.inc.yitu.bigdata.BigdataApplication  : No active profile set, falling back to default profiles: default
+2019-07-17 16:24:53.046  INFO 4051 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-07-17 16:24:53.101  INFO 4051 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47ms. Found 1 repository interfaces.
+2019-07-17 16:24:53.422  INFO 4051 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$794f7e58] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-07-17 16:24:53.680  INFO 4051 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8888 (http)
+2019-07-17 16:24:53.705  INFO 4051 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-17 16:24:53.706  INFO 4051 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-07-17 16:24:53.872  INFO 4051 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-17 16:24:53.873  INFO 4051 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1644 ms
+2019-07-17 16:24:54.038  INFO 4051 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-07-17 16:24:54.171  INFO 4051 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-07-17 16:24:54.211  INFO 4051 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-07-17 16:24:54.316  INFO 4051 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.10.Final}
+2019-07-17 16:24:54.321  INFO 4051 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-07-17 16:24:54.457  INFO 4051 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-07-17 16:24:54.597  INFO 4051 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2019-07-17 16:24:55.251  INFO 4051 --- [main] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@647fb583'
+2019-07-17 16:24:55.255  INFO 4051 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-07-17 16:24:55.344  INFO 4051 --- [main] org.casbin.jcasbin                       : Model:
+2019-07-17 16:24:55.344  INFO 4051 --- [main] org.casbin.jcasbin                       : p.p: sub, obj, act
+2019-07-17 16:24:55.344  INFO 4051 --- [main] org.casbin.jcasbin                       : r.r: sub, obj, act
+2019-07-17 16:24:55.344  INFO 4051 --- [main] org.casbin.jcasbin                       : e.e: some(where (p_eft == allow))
+2019-07-17 16:24:55.344  INFO 4051 --- [main] org.casbin.jcasbin                       : g.g: _, _
+2019-07-17 16:24:55.344  INFO 4051 --- [main] org.casbin.jcasbin                       : m.m: g(r_sub, p_sub) && r_obj == p_obj && r_act == p_act
+2019-07-17 16:24:55.456  INFO 4051 --- [main] org.casbin.jcasbin                       : Policy:
+2019-07-17 16:24:55.456  INFO 4051 --- [main] org.casbin.jcasbin                       : p: sub, obj, act: [[alice, data, read], [bob, data, read], [data2_admin, data, write]]
+2019-07-17 16:24:55.456  INFO 4051 --- [main] org.casbin.jcasbin                       : g: _, _: [[alice, data2_admin]]
+2019-07-17 16:24:55.457  INFO 4051 --- [main] org.casbin.jcasbin                       : Role links for: g
+2019-07-17 16:24:55.457  INFO 4051 --- [main] org.casbin.jcasbin                       : alice < data2_admin
+2019-07-17 16:24:55.457  INFO 4051 --- [main] org.casbin.jcasbin                       : data2_admin < 
+2019-07-17 16:24:55.457  INFO 4051 --- [main] o.c.s.b.a.CasbinAutoConfiguration        : Casbin use SyncedEnforcer
+2019-07-17 16:24:55.855  WARN 4051 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-07-17 16:24:55.955  INFO 4051 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-07-17 16:24:56.055  INFO 4051 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-07-17 16:24:56.319  INFO 4051 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-07-17 16:24:56.338  INFO 4051 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-07-17 16:24:56.362  INFO 4051 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-07-17 16:24:56.515  INFO 4051 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8888 (http) with context path ''
+2019-07-17 16:24:56.516  INFO 4051 --- [main] com.inc.yitu.bigdata.BigdataApplication  : Started BigdataApplication in 5.281 seconds (JVM running for 5.755)
+2019-07-17 16:25:26.128  INFO 4051 --- [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-07-17 16:25:26.128  INFO 4051 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-07-17 16:25:26.139  INFO 4051 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 11 ms
+2019-07-17 16:25:26.228  INFO 4051 --- [http-nio-8888-exec-1] org.casbin.jcasbin                       : Request: alice, data, write ---> true
+2019-07-17 16:25:33.714  INFO 4051 --- [Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-07-17 16:25:33.724  INFO 4051 --- [Thread-3] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-07-17 16:25:33.727  INFO 4051 --- [Thread-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-07-17 16:25:33.737  INFO 4051 --- [Thread-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-07-17 16:25:52.542  INFO 4285 --- [main] com.inc.yitu.bigdata.BigdataApplication  : Starting BigdataApplication on YL-Ubuntu019 with PID 4285 (/home/hefeng.zhang/IdeaProjects/bigdata/build/classes/java/main started by hefeng.zhang in /home/hefeng.zhang/IdeaProjects/bigdata)
+2019-07-17 16:25:52.545  INFO 4285 --- [main] com.inc.yitu.bigdata.BigdataApplication  : No active profile set, falling back to default profiles: default
+2019-07-17 16:25:53.256  INFO 4285 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-07-17 16:25:53.304  INFO 4285 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41ms. Found 1 repository interfaces.
+2019-07-17 16:25:53.552  INFO 4285 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$fe3b2b3c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-07-17 16:25:53.792  INFO 4285 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8888 (http)
+2019-07-17 16:25:53.813  INFO 4285 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-17 16:25:53.813  INFO 4285 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-07-17 16:25:54.005  INFO 4285 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-17 16:25:54.006  INFO 4285 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1433 ms
+2019-07-17 16:25:54.164  INFO 4285 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-07-17 16:25:54.279  INFO 4285 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-07-17 16:25:54.317  INFO 4285 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-07-17 16:25:54.364  INFO 4285 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.10.Final}
+2019-07-17 16:25:54.365  INFO 4285 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-07-17 16:25:54.467  INFO 4285 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-07-17 16:25:54.566  INFO 4285 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2019-07-17 16:25:55.217  INFO 4285 --- [main] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@70d3cdbf'
+2019-07-17 16:25:55.221  INFO 4285 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-07-17 16:25:55.307  INFO 4285 --- [main] org.casbin.jcasbin                       : Model:
+2019-07-17 16:25:55.307  INFO 4285 --- [main] org.casbin.jcasbin                       : p.p: sub, obj, act
+2019-07-17 16:25:55.307  INFO 4285 --- [main] org.casbin.jcasbin                       : r.r: sub, obj, act
+2019-07-17 16:25:55.307  INFO 4285 --- [main] org.casbin.jcasbin                       : e.e: some(where (p_eft == allow))
+2019-07-17 16:25:55.307  INFO 4285 --- [main] org.casbin.jcasbin                       : g.g: _, _
+2019-07-17 16:25:55.307  INFO 4285 --- [main] org.casbin.jcasbin                       : m.m: g(r_sub, p_sub) && r_obj == p_obj && r_act == p_act
+2019-07-17 16:25:55.429  INFO 4285 --- [main] org.casbin.jcasbin                       : Policy:
+2019-07-17 16:25:55.430  INFO 4285 --- [main] org.casbin.jcasbin                       : p: sub, obj, act: [[alice, data, read], [bob, data, read], [data2_admin, data, write]]
+2019-07-17 16:25:55.430  INFO 4285 --- [main] org.casbin.jcasbin                       : g: _, _: [[alice, data2_admin]]
+2019-07-17 16:25:55.430  INFO 4285 --- [main] org.casbin.jcasbin                       : Role links for: g
+2019-07-17 16:25:55.430  INFO 4285 --- [main] org.casbin.jcasbin                       : alice < data2_admin
+2019-07-17 16:25:55.430  INFO 4285 --- [main] org.casbin.jcasbin                       : data2_admin < 
+2019-07-17 16:25:55.430  INFO 4285 --- [main] o.c.s.b.a.CasbinAutoConfiguration        : Casbin use SyncedEnforcer
+2019-07-17 16:25:55.903  WARN 4285 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-07-17 16:25:56.008  INFO 4285 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-07-17 16:25:56.158  INFO 4285 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-07-17 16:25:56.408  INFO 4285 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-07-17 16:25:56.426  INFO 4285 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-07-17 16:25:56.456  INFO 4285 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-07-17 16:25:56.621  INFO 4285 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8888 (http) with context path ''
+2019-07-17 16:25:56.623  INFO 4285 --- [main] com.inc.yitu.bigdata.BigdataApplication  : Started BigdataApplication in 4.605 seconds (JVM running for 4.882)
+2019-07-17 16:26:01.370  INFO 4285 --- [http-nio-8888-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-07-17 16:26:01.370  INFO 4285 --- [http-nio-8888-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-07-17 16:26:01.386  INFO 4285 --- [http-nio-8888-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 16 ms
+2019-07-17 16:26:01.470  INFO 4285 --- [http-nio-8888-exec-2] org.casbin.jcasbin                       : Request: alice, data, write ---> true
+2019-07-17 16:26:04.297  INFO 4285 --- [Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-07-17 16:26:04.321  INFO 4285 --- [Thread-3] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-07-17 16:26:04.323  INFO 4285 --- [Thread-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-07-17 16:26:04.332  INFO 4285 --- [Thread-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-07-17 16:27:49.927  INFO 4983 --- [main] com.inc.yitu.bigdata.BigdataApplication  : Starting BigdataApplication on YL-Ubuntu019 with PID 4983 (/home/hefeng.zhang/IdeaProjects/bigdata/out/production/classes started by hefeng.zhang in /home/hefeng.zhang/IdeaProjects/bigdata)
+2019-07-17 16:27:49.933  INFO 4983 --- [main] com.inc.yitu.bigdata.BigdataApplication  : No active profile set, falling back to default profiles: default
+2019-07-17 16:27:51.070  INFO 4983 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-07-17 16:27:51.120  INFO 4983 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 44ms. Found 1 repository interfaces.
+2019-07-17 16:27:51.391  INFO 4983 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$390fb345] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-07-17 16:27:51.662  INFO 4983 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8888 (http)
+2019-07-17 16:27:51.683  INFO 4983 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-17 16:27:51.683  INFO 4983 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-07-17 16:27:51.849  INFO 4983 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-17 16:27:51.849  INFO 4983 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1869 ms
+2019-07-17 16:27:51.991  INFO 4983 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-07-17 16:27:52.134  INFO 4983 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-07-17 16:27:52.173  INFO 4983 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-07-17 16:27:52.249  INFO 4983 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.10.Final}
+2019-07-17 16:27:52.250  INFO 4983 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-07-17 16:27:52.360  INFO 4983 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-07-17 16:27:52.479  INFO 4983 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2019-07-17 16:27:53.180  INFO 4983 --- [main] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@781c2497'
+2019-07-17 16:27:53.185  INFO 4983 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-07-17 16:27:53.252  INFO 4983 --- [main] org.casbin.jcasbin                       : Model:
+2019-07-17 16:27:53.253  INFO 4983 --- [main] org.casbin.jcasbin                       : p.p: sub, obj, act
+2019-07-17 16:27:53.253  INFO 4983 --- [main] org.casbin.jcasbin                       : r.r: sub, obj, act
+2019-07-17 16:27:53.253  INFO 4983 --- [main] org.casbin.jcasbin                       : e.e: some(where (p_eft == allow))
+2019-07-17 16:27:53.253  INFO 4983 --- [main] org.casbin.jcasbin                       : g.g: _, _
+2019-07-17 16:27:53.253  INFO 4983 --- [main] org.casbin.jcasbin                       : m.m: g(r_sub, p_sub) && r_obj == p_obj && r_act == p_act
+2019-07-17 16:27:53.425  INFO 4983 --- [main] org.casbin.jcasbin                       : Policy:
+2019-07-17 16:27:53.426  INFO 4983 --- [main] org.casbin.jcasbin                       : p: sub, obj, act: [[alice, data, read], [bob, data, read], [data2_admin, data, write]]
+2019-07-17 16:27:53.426  INFO 4983 --- [main] org.casbin.jcasbin                       : g: _, _: [[alice, data2_admin]]
+2019-07-17 16:27:53.427  INFO 4983 --- [main] org.casbin.jcasbin                       : Role links for: g
+2019-07-17 16:27:53.427  INFO 4983 --- [main] org.casbin.jcasbin                       : alice < data2_admin
+2019-07-17 16:27:53.427  INFO 4983 --- [main] org.casbin.jcasbin                       : data2_admin < 
+2019-07-17 16:27:53.427  INFO 4983 --- [main] o.c.s.b.a.CasbinAutoConfiguration        : Casbin use SyncedEnforcer
+2019-07-17 16:27:53.999  WARN 4983 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-07-17 16:27:54.128  INFO 4983 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-07-17 16:27:54.248  INFO 4983 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-07-17 16:27:54.516  INFO 4983 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-07-17 16:27:54.535  INFO 4983 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-07-17 16:27:54.559  INFO 4983 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-07-17 16:27:54.762  INFO 4983 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8888 (http) with context path ''
+2019-07-17 16:27:54.767  INFO 4983 --- [main] com.inc.yitu.bigdata.BigdataApplication  : Started BigdataApplication in 5.354 seconds (JVM running for 5.742)
+2019-07-17 16:28:00.752  INFO 4983 --- [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-07-17 16:28:00.753  INFO 4983 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-07-17 16:28:00.766  INFO 4983 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 12 ms
+2019-07-17 16:28:00.843  INFO 4983 --- [http-nio-8888-exec-1] org.casbin.jcasbin                       : Request: alice, data, write ---> true
+2019-07-17 16:29:30.738  INFO 4983 --- [Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-07-17 16:29:30.740  INFO 4983 --- [Thread-3] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-07-17 16:29:30.742  INFO 4983 --- [Thread-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-07-17 16:29:30.755  INFO 4983 --- [Thread-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-07-17 16:33:52.605  INFO 6891 --- [main] com.inc.yitu.bigdata.BigdataApplication  : Starting BigdataApplication on YL-Ubuntu019 with PID 6891 (/home/hefeng.zhang/IdeaProjects/bigdata/out/production/classes started by hefeng.zhang in /home/hefeng.zhang/IdeaProjects/bigdata)
+2019-07-17 16:33:52.608  INFO 6891 --- [main] com.inc.yitu.bigdata.BigdataApplication  : No active profile set, falling back to default profiles: default
+2019-07-17 16:33:53.796  INFO 6891 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-07-17 16:33:53.846  INFO 6891 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 44ms. Found 1 repository interfaces.
+2019-07-17 16:33:54.137  INFO 6891 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$60c2c574] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-07-17 16:33:54.396  INFO 6891 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8888 (http)
+2019-07-17 16:33:54.419  INFO 6891 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-17 16:33:54.420  INFO 6891 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-07-17 16:33:54.595  INFO 6891 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-17 16:33:54.596  INFO 6891 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1913 ms
+2019-07-17 16:33:54.788  INFO 6891 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-07-17 16:33:54.924  INFO 6891 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-07-17 16:33:54.982  INFO 6891 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-07-17 16:33:55.053  INFO 6891 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.10.Final}
+2019-07-17 16:33:55.054  INFO 6891 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-07-17 16:33:55.170  INFO 6891 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-07-17 16:33:55.300  INFO 6891 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2019-07-17 16:33:55.980  INFO 6891 --- [main] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@7404ddca'
+2019-07-17 16:33:55.984  INFO 6891 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-07-17 16:33:56.089  INFO 6891 --- [main] org.casbin.jcasbin                       : Model:
+2019-07-17 16:33:56.089  INFO 6891 --- [main] org.casbin.jcasbin                       : p.p: sub, obj, act
+2019-07-17 16:33:56.089  INFO 6891 --- [main] org.casbin.jcasbin                       : r.r: sub, obj, act
+2019-07-17 16:33:56.089  INFO 6891 --- [main] org.casbin.jcasbin                       : e.e: some(where (p_eft == allow))
+2019-07-17 16:33:56.089  INFO 6891 --- [main] org.casbin.jcasbin                       : g.g: _, _
+2019-07-17 16:33:56.089  INFO 6891 --- [main] org.casbin.jcasbin                       : m.m: g(r_sub, p_sub) && r_obj == p_obj && r_act == p_act
+2019-07-17 16:33:56.213  INFO 6891 --- [main] org.casbin.jcasbin                       : Policy:
+2019-07-17 16:33:56.214  INFO 6891 --- [main] org.casbin.jcasbin                       : p: sub, obj, act: [[alice, data, read], [bob, data, read], [data2_admin, data, write]]
+2019-07-17 16:33:56.214  INFO 6891 --- [main] org.casbin.jcasbin                       : g: _, _: [[alice, data2_admin]]
+2019-07-17 16:33:56.214  INFO 6891 --- [main] org.casbin.jcasbin                       : Role links for: g
+2019-07-17 16:33:56.214  INFO 6891 --- [main] org.casbin.jcasbin                       : alice < data2_admin
+2019-07-17 16:33:56.215  INFO 6891 --- [main] org.casbin.jcasbin                       : data2_admin < 
+2019-07-17 16:33:56.215  INFO 6891 --- [main] o.c.s.b.a.CasbinAutoConfiguration        : Casbin use SyncedEnforcer
+2019-07-17 16:33:56.644  WARN 6891 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-07-17 16:33:56.750  INFO 6891 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-07-17 16:33:56.860  INFO 6891 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-07-17 16:33:57.193  INFO 6891 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-07-17 16:33:57.219  INFO 6891 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-07-17 16:33:57.252  INFO 6891 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-07-17 16:33:57.439  INFO 6891 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8888 (http) with context path ''
+2019-07-17 16:33:57.440  INFO 6891 --- [main] com.inc.yitu.bigdata.BigdataApplication  : Started BigdataApplication in 5.347 seconds (JVM running for 5.716)
+2019-07-17 16:34:14.362  INFO 6891 --- [Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-07-17 16:34:14.373  INFO 6891 --- [Thread-3] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-07-17 16:34:14.376  INFO 6891 --- [Thread-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-07-17 16:34:14.385  INFO 6891 --- [Thread-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

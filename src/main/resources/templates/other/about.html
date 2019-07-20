@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet" />
+    <link th:href="@{/main.css}" rel="stylesheet" />
+    <title>关于</title>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+<div th:include="header.html :: header"></div>
+<div th:include="left.html :: left"></div>
+    <div class="layui-body layui-tab-content site-demo site-demo-body">
+        <div class="layui-tab-item layui-show">
+            <div class="layui-main">
+                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                    <legend>关于</legend>
+                </fieldset>
+                <div style="padding: 20px; background-color: #F2F2F2;">
+                    <div class="layui-row layui-col-space15">
+                        <div class="layui-col-md6">
+                            <div class="layui-card">
+                                <div class="layui-card-body">
+                                    <blockquote class="layui-elem-quote">
+                                        功能: <span th:text="${desc}"></span>
+                                    </blockquote>
+                                    <blockquote class="layui-elem-quote">
+                                        目标: <span th:text="${target}"></span>
+                                    </blockquote>
+                                    <blockquote class="layui-elem-quote">
+                                        作者: <span th:text="${editor}"></span>
+                                    </blockquote>
+                                    <blockquote class="layui-elem-quote">
+                                        爱好: <span th:text="${hobby}"></span>
+                                    </blockquote>
+                                    <blockquote class="layui-elem-quote">
+                                        <div>版本: <span th:text="${version}"></span></div>
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:include="footer.html :: footer"></div>
+</div>
+<script th:src="@{/layui/layui.js}"></script>
+<script>
+    //JavaScript代码区域
+    layui.use(['element'], function() {
+        var element = layui.element;
+    });
+</script>
+</body>
+</html>

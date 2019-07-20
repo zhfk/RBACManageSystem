@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet" />
+    <link th:href="@{/main.css}" rel="stylesheet" />
+    <title>关于</title>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+    <div th:include="header.html :: header"></div>
+    <div th:include="left.html :: left"></div>
+    <div class="layui-body layui-tab-content site-demo site-demo-body">
+        <div class="layui-tab-item layui-show">
+            <div class="layui-main">
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>操作记录</legend>
+                </fieldset>
+                <ul class="layui-timeline">
+                    <li class="layui-timeline-item">
+                        <i class="layui-icon layui-timeline-axis"></i>
+                        <div class="layui-timeline-content layui-text">
+                            <div class="layui-timeline-title">2018年，layui 5.0 发布。并发展成为中国最受欢迎的前端UI框架（期望）</div>
+                        </div>
+                    </li>
+                    <li class="layui-timeline-item">
+                        <i class="layui-icon layui-timeline-axis"></i>
+                        <div class="layui-timeline-content layui-text">
+                            <div class="layui-timeline-title">2017年，layui 里程碑版本 2.0 发布</div>
+                        </div>
+                    </li>
+                    <li class="layui-timeline-item">
+                        <i class="layui-icon layui-timeline-axis"></i>
+                        <div class="layui-timeline-content layui-text">
+                            <div class="layui-timeline-title">2016年，layui 首个版本发布</div>
+                        </div>
+                    </li>
+                    <li class="layui-timeline-item">
+                        <i class="layui-icon layui-timeline-axis"></i>
+                        <div class="layui-timeline-content layui-text">
+                            <div class="layui-timeline-title">2015年，layui 孵化</div>
+                        </div>
+                    </li>
+                    <li class="layui-timeline-item">
+                        <i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop layui-timeline-axis"></i>
+                        <div class="layui-timeline-content layui-text">
+                            <div class="layui-timeline-title">更久前，轮子时代。维护几个独立组件：layer等</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div th:include="footer.html :: footer"></div>
+</div>
+<script th:src="@{/layui/layui.js}"></script>
+<script>
+    //JavaScript代码区域
+    layui.use(['element'], function() {
+        var element = layui.element;
+    });
+</script>
+</body>
+</html>

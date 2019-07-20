@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet" />
+    <link th:href="@{/main.css}" rel="stylesheet" />
+    <title>RBACMS</title>
+</head>
+<body class="layui-layout-body" style="background-color: #131313">
+<div class="layui-layout layui-layout-admin">
+    <div th:include="header.html :: header"></div>
+    <div th:include="left.html :: left"></div>
+    <div class="layui-body layui-tab-content site-demo site-demo-body">
+        <div class="layui-tab-item layui-show">
+            <div class="layui-main">
+                <div th:include="main.html :: main"></div>
+            </div>
+        </div>
+    </div>
+    <div th:include="footer.html :: footer"></div>
+</div>
+<script th:src="@{/layui/layui.js}"></script>
+<script>
+    //JavaScript代码区域
+    layui.use(['element'], function() {
+        var element = layui.element;
+    });
+</script>
+</body>
+</html>

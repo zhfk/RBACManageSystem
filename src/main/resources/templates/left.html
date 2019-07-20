@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>left</title>
+</head>
+<body>
+    <div th:fragment="left">
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a class="" href="javascript:;">对象管理</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:;"> 用户管理 <i class="layui-icon layui-icon-user" style="font-size: 15px; "></i></a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;"> 角色管理 <i class="layui-icon layui-icon-group" style="font-size: 15px; "></i></a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;"> 资源管理 <i class="layui-icon layui-icon-component" style="font-size: 15px; "></i></a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;"> 权限管理 <i class="layui-icon layui-icon-vercode" style="font-size: 15px; "></i></a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item"><a href="javascript:;">授权管理</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:;"> 用户授权 <i class="layui-icon layui-icon-user" style="font-size: 15px; "></i></a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;"> 角色授权 <i class="layui-icon layui-icon-group" style="font-size: 15px; "></i></a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item"><a href="javascript:;">通知管理</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:;"> 消息通知 <i class="layui-icon layui-icon-notice" style="font-size: 15px; "></i></a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;"> 邮件通知 <i class="layui-icon layui-icon-release" style="font-size: 15px; "></i></a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item"><a href="javascript:;">模型管理</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:;">ACL</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">ACL with superuser</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">ACL without users</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">ACL without resources</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">RBAC</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">RBAC with resource roles</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">RBAC with domains/tenants</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">ABAC</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">RESTful</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">Deny-override</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">Priority</a>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

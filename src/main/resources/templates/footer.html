@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>footer</title>
+</head>
+<body>
+    <div th:fragment="footer">
+        <div class="layui-footer footer footer-index">
+            <div class="layui-main">
+                <p>&copy;2019&nbsp;<a href="#">&nbsp;https://zhfk.github.io&nbsp;</a>&nbsp;倾情出品&nbsp;</p>
+            </div>
+        </div>
+    </div>
+<script th:src="@{/layui/layui.js}"></script>
+<script>
+    //JavaScript代码区域
+    layui.use(['element', 'form'], function() {
+        var element = layui.element,
+            form = layui.form;
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet" />
+    <link th:href="@{/main.css}" rel="stylesheet" />
+    <title>搜索</title>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+    <div th:include="header.html :: header"></div>
+    <div th:include="left.html :: left"></div>
+    <div class="layui-body layui-tab-content site-demo site-demo-body">
+        <div class="layui-tab-item layui-show">
+            <div class="layui-main">
+                <blockquote class="layui-elem-quote layui-text">
+                    可以选定多个条件进行匹配
+                </blockquote>
+                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                    <legend>条件选择</legend>
+                </fieldset>
+                <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                        <div class="layui-input-inline">
+                            <select name="quiz1">
+                                <option value="all" selected>用户(*)</option>
+                                <option value="" >乔峰</option>
+                                <option value="">段誉</option>
+                                <option value="">王语嫣</option>
+                                <option value="">段正淳</option>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline">
+                            <select name="quiz2">
+                                <option value="non" selected>角色/组(*)</option>
+                                <option value="">admin</option>
+                                <option value="" >user</option>
+                                <option value="">maintainer</option>
+                                <option value="">guest</option>
+                                <option value="">developer</option>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline">
+                            <select name="quiz3">
+                                <option value="non" selected>资源(*)</option>
+                                <option value="">hdfs</option>
+                                <option value="">hive</option>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline">
+                            <select name="quiz3">
+                                <option value="non" selected>权限(*)</option>
+                                <option value="">create</option>
+                                <option value="">drop</option>
+                                <option value="">insert</option>
+                            </select>
+                        </div>
+                        <div class="layui-btn-container">
+                            <button type="button" class="layui-btn layui-btn">
+                                <i class="layui-icon layui-icon-search" style="font-size: 25px; color: whitesmoke"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                    <legend>匹配结果</legend>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+    <div th:include="footer.html :: footer"></div>
+</div>
+<script th:src="@{/layui/layui.js}"></script>
+<script>
+    //JavaScript代码区域
+    layui.use(['element', 'form'], function() {
+        var element = layui.element,
+        form = layui.form;
+    });
+</script>
+</body>
+</html>

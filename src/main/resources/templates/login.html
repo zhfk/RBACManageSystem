@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet" />
+    <link th:href="@{/main.css}" rel="stylesheet" />
+    <title>RBACMS</title>
+</head>
+<body>
+    <div class="layui-main" style="width: 400px;height: 200px; position: absolute; top: 40%;left: 50%; margin-top: -100px;margin-left: -250px;">
+        <form class="layui-form" th:action="@{/}">
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <div class="layui-logo">
+                        <a href="#">
+                            <i class="layui-icon layui-icon-auz" style="font-size: 25px;">&nbsp;RBAC&nbsp;Manager&nbsp;System</i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <input type="text" name="username" autocomplete="off" placeholder="请输入用户名" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <input type="password" name="password" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+<script th:src="@{/layui/layui.js}"></script>
+<script>
+    //JavaScript代码区域
+    layui.use(['element', 'form'], function() {
+        var element = layui.element,
+            form = layui.form;
+    });
+</script>
+</body>
+</html>

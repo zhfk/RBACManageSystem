@@ -1,0 +1,280 @@
+@charset "UTF-8";
+
+#board_1, #board_2 {
+    width: 100%;
+    height: 100%;
+}
+
+#board_2 {
+    overflow: hidden;
+    margin: 0;
+    padding:0;
+}
+#board_2 *, #board_2 *:after {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 50%;
+}
+
+.💀:nth-child(1) {
+    -webkit-transform: rotate(0deg) translate(100px);
+    transform: rotate(0deg) translate(100px);
+}
+.💀:nth-child(2) {
+    -webkit-transform: rotate(36deg) translate(100px);
+    transform: rotate(36deg) translate(100px);
+}
+.💀:nth-child(3) {
+    -webkit-transform: rotate(72deg) translate(100px);
+    transform: rotate(72deg) translate(100px);
+}
+.💀:nth-child(4) {
+    -webkit-transform: rotate(108deg) translate(100px);
+    transform: rotate(108deg) translate(100px);
+}
+.💀:nth-child(5) {
+    -webkit-transform: rotate(144deg) translate(100px);
+    transform: rotate(144deg) translate(100px);
+}
+.💀:nth-child(6) {
+    -webkit-transform: rotate(180deg) translate(100px);
+    transform: rotate(180deg) translate(100px);
+}
+.💀:nth-child(7) {
+    -webkit-transform: rotate(216deg) translate(100px);
+    transform: rotate(216deg) translate(100px);
+}
+.💀:nth-child(8) {
+    -webkit-transform: rotate(252deg) translate(100px);
+    transform: rotate(252deg) translate(100px);
+}
+.💀:nth-child(9) {
+    -webkit-transform: rotate(288deg) translate(100px);
+    transform: rotate(288deg) translate(100px);
+}
+.💀:nth-child(10) {
+    -webkit-transform: rotate(324deg) translate(100px);
+    transform: rotate(324deg) translate(100px);
+}
+.💀:nth-child(11) {
+    -webkit-transform: rotate(360deg) translate(100px);
+    transform: rotate(360deg) translate(100px);
+}
+.💀 .🌀:after {
+    content: "";
+    width: 18px;
+    height: 18px;
+    -webkit-animation: 3s ⚔️ ease-in-out infinite;
+    animation: 3s ⚔️ ease-in-out infinite;
+}
+.💀 .🌀:nth-child(1) {
+    -webkit-transform: rotate(0deg) translate(-200px) scale(1);
+    transform: rotate(0deg) translate(-200px) scale(1);
+}
+.💀 .🌀:nth-child(1):after {
+    -webkit-animation-delay: 0s;
+    animation-delay: 0s;
+    background-color: #00aaff;
+}
+.💀 .🌀:nth-child(2) {
+    -webkit-transform: rotate(4.5deg) translate(-200px) scale(0.95);
+    transform: rotate(4.5deg) translate(-200px) scale(0.95);
+}
+.💀 .🌀:nth-child(2):after {
+    -webkit-animation-delay: -0.075s;
+    animation-delay: -0.075s;
+    background-color: #009fff;
+}
+.💀 .🌀:nth-child(3) {
+    -webkit-transform: rotate(9deg) translate(-200px) scale(0.9);
+    transform: rotate(9deg) translate(-200px) scale(0.9);
+}
+.💀 .🌀:nth-child(3):after {
+    -webkit-animation-delay: -0.15s;
+    animation-delay: -0.15s;
+    background-color: #0095ff;
+}
+.💀 .🌀:nth-child(4) {
+    -webkit-transform: rotate(13.5deg) translate(-200px) scale(0.85);
+    transform: rotate(13.5deg) translate(-200px) scale(0.85);
+}
+.💀 .🌀:nth-child(4):after {
+    -webkit-animation-delay: -0.225s;
+    animation-delay: -0.225s;
+    background-color: #008aff;
+}
+.💀 .🌀:nth-child(5) {
+    -webkit-transform: rotate(18deg) translate(-200px) scale(0.8);
+    transform: rotate(18deg) translate(-200px) scale(0.8);
+}
+.💀 .🌀:nth-child(5):after {
+    -webkit-animation-delay: -0.3s;
+    animation-delay: -0.3s;
+    background-color: #0080ff;
+}
+.💀 .🌀:nth-child(6) {
+    -webkit-transform: rotate(22.5deg) translate(-200px) scale(0.75);
+    transform: rotate(22.5deg) translate(-200px) scale(0.75);
+}
+.💀 .🌀:nth-child(6):after {
+    -webkit-animation-delay: -0.375s;
+    animation-delay: -0.375s;
+    background-color: #0075ff;
+}
+.💀 .🌀:nth-child(7) {
+    -webkit-transform: rotate(27deg) translate(-200px) scale(0.7);
+    transform: rotate(27deg) translate(-200px) scale(0.7);
+}
+.💀 .🌀:nth-child(7):after {
+    -webkit-animation-delay: -0.45s;
+    animation-delay: -0.45s;
+    background-color: #006aff;
+}
+.💀 .🌀:nth-child(8) {
+    -webkit-transform: rotate(31.5deg) translate(-200px) scale(0.65);
+    transform: rotate(31.5deg) translate(-200px) scale(0.65);
+}
+.💀 .🌀:nth-child(8):after {
+    -webkit-animation-delay: -0.525s;
+    animation-delay: -0.525s;
+    background-color: #0060ff;
+}
+.💀 .🌀:nth-child(9) {
+    -webkit-transform: rotate(36deg) translate(-200px) scale(0.6);
+    transform: rotate(36deg) translate(-200px) scale(0.6);
+}
+.💀 .🌀:nth-child(9):after {
+    -webkit-animation-delay: -0.6s;
+    animation-delay: -0.6s;
+    background-color: #0055ff;
+}
+.💀 .🌀:nth-child(10) {
+    -webkit-transform: rotate(40.5deg) translate(-200px) scale(0.55);
+    transform: rotate(40.5deg) translate(-200px) scale(0.55);
+}
+.💀 .🌀:nth-child(10):after {
+    -webkit-animation-delay: -0.675s;
+    animation-delay: -0.675s;
+    background-color: #004aff;
+}
+.💀 .🌀:nth-child(11) {
+    -webkit-transform: rotate(45deg) translate(-200px) scale(0.5);
+    transform: rotate(45deg) translate(-200px) scale(0.5);
+}
+.💀 .🌀:nth-child(11):after {
+    -webkit-animation-delay: -0.75s;
+    animation-delay: -0.75s;
+    background-color: #0040ff;
+}
+.💀 .🌀:nth-child(12) {
+    -webkit-transform: rotate(49.5deg) translate(-200px) scale(0.45);
+    transform: rotate(49.5deg) translate(-200px) scale(0.45);
+}
+.💀 .🌀:nth-child(12):after {
+    -webkit-animation-delay: -0.825s;
+    animation-delay: -0.825s;
+    background-color: #0035ff;
+}
+.💀 .🌀:nth-child(13) {
+    -webkit-transform: rotate(54deg) translate(-200px) scale(0.4);
+    transform: rotate(54deg) translate(-200px) scale(0.4);
+}
+.💀 .🌀:nth-child(13):after {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+    background-color: #002bff;
+}
+.💀 .🌀:nth-child(14) {
+    -webkit-transform: rotate(58.5deg) translate(-200px) scale(0.35);
+    transform: rotate(58.5deg) translate(-200px) scale(0.35);
+}
+.💀 .🌀:nth-child(14):after {
+    -webkit-animation-delay: -0.975s;
+    animation-delay: -0.975s;
+    background-color: #0020ff;
+}
+.💀 .🌀:nth-child(15) {
+    -webkit-transform: rotate(63deg) translate(-200px) scale(0.3);
+    transform: rotate(63deg) translate(-200px) scale(0.3);
+}
+.💀 .🌀:nth-child(15):after {
+    -webkit-animation-delay: -1.05s;
+    animation-delay: -1.05s;
+    background-color: #0015ff;
+}
+.💀 .🌀:nth-child(16) {
+    -webkit-transform: rotate(67.5deg) translate(-200px) scale(0.25);
+    transform: rotate(67.5deg) translate(-200px) scale(0.25);
+}
+.💀 .🌀:nth-child(16):after {
+    -webkit-animation-delay: -1.125s;
+    animation-delay: -1.125s;
+    background-color: #000bff;
+}
+.💀 .🌀:nth-child(17) {
+    -webkit-transform: rotate(72deg) translate(-200px) scale(0.2);
+    transform: rotate(72deg) translate(-200px) scale(0.2);
+}
+.💀 .🌀:nth-child(17):after {
+    -webkit-animation-delay: -1.2s;
+    animation-delay: -1.2s;
+    background-color: blue;
+}
+.💀 .🌀:nth-child(18) {
+    -webkit-transform: rotate(76.5deg) translate(-200px) scale(0.15);
+    transform: rotate(76.5deg) translate(-200px) scale(0.15);
+}
+.💀 .🌀:nth-child(18):after {
+    -webkit-animation-delay: -1.275s;
+    animation-delay: -1.275s;
+    background-color: #0b00ff;
+}
+.💀 .🌀:nth-child(19) {
+    -webkit-transform: rotate(81deg) translate(-200px) scale(0.1);
+    transform: rotate(81deg) translate(-200px) scale(0.1);
+}
+.💀 .🌀:nth-child(19):after {
+    -webkit-animation-delay: -1.35s;
+    animation-delay: -1.35s;
+    background-color: #1500ff;
+}
+.💀 .🌀:nth-child(20) {
+    -webkit-transform: rotate(85.5deg) translate(-200px) scale(0.05);
+    transform: rotate(85.5deg) translate(-200px) scale(0.05);
+}
+.💀 .🌀:nth-child(20):after {
+    -webkit-animation-delay: -1.425s;
+    animation-delay: -1.425s;
+    background-color: #2000ff;
+}
+.💀 .🌀:nth-child(21) {
+    -webkit-transform: rotate(90deg) translate(-200px) scale(0);
+    transform: rotate(90deg) translate(-200px) scale(0);
+}
+.💀 .🌀:nth-child(21):after {
+    -webkit-animation-delay: -1.5s;
+    animation-delay: -1.5s;
+    background-color: #2b00ff;
+}
+
+@-webkit-keyframes ⚔️ {
+    50% {
+        -webkit-transform: translate(400px) scale(1, -1);
+        transform: translate(400px) scale(1, -1);
+    }
+}
+
+@keyframes ⚔️ {
+    50% {
+        -webkit-transform: translate(400px) scale(1, -1);
+        transform: translate(400px) scale(1, -1);
+    }
+}
+
+.layui-icon {
+    color: #1E9FFF;
+}

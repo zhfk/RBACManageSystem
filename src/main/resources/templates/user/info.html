@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet" />
+    <link th:href="@{/main.css}" rel="stylesheet" />
+    <title>关于</title>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+    <div th:include="header.html :: header"></div>
+    <div th:include="left.html :: left"></div>
+    <div class="layui-body layui-tab-content site-demo site-demo-body">
+        <div class="layui-tab-item layui-show">
+            <div class="layui-main">
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>个人信息</legend>
+                </fieldset>
+                <form class="layui-form layui-form-pane" action="">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">用户名</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="username" lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-text" style="color: red; font-size: medium"><strong>*</strong></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">密码</label>
+                        <div class="layui-input-inline">
+                            <input type="password" name="password" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-text" style="color: red; font-size: medium"><strong>*</strong></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">出生日期</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="date" id="birthday" placeholder="2000-01-01" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">爱好</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="hobby" placeholder="凉皮、沙拉、柠檬茶 ... --吃，我所欲也！" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">名言</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="hobby" placeholder="别和我谈梦想，我的梦想就每天收租 . . ." autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">籍贯</label>
+                        <div class="layui-input-inline">
+                            <select name="quiz1">
+                                <option value="">请选择省</option>
+                                <option value="浙江" selected="">浙江省</option>
+                                <option value="你的工号">江西省</option>
+                                <option value="你最喜欢的老师">福建省</option>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline">
+                            <select name="quiz2">
+                                <option value="">请选择市</option>
+                                <option value="杭州">杭州</option>
+                                <option value="宁波" disabled="">宁波</option>
+                                <option value="温州">温州</option>
+                                <option value="温州">台州</option>
+                                <option value="温州">绍兴</option>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline">
+                            <select name="quiz3">
+                                <option value="">请选择县/区</option>
+                                <option value="西湖区">西湖区</option>
+                                <option value="余杭区">余杭区</option>
+                                <option value="拱墅区">临安市</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item" pane="">
+                        <label class="layui-form-label">想去火星</label>
+                        <div class="layui-input-block">
+                            <input type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest" title="开关" lay-text="YES|NO">
+                        </div>
+                    </div>
+                    <div class="layui-form-item" pane="">
+                        <label class="layui-form-label">性别</label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="sex" value="男" title="男" checked="">
+                            <input type="radio" name="sex" value="女" title="女">
+                            <input type="radio" name="sex" value="保密" title="保密" disabled="">
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">个人说明</label>
+                        <div class="layui-input-block">
+                            <textarea placeholder="每个人都只有一种命运 . . .   --《教父》" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <button class="layui-btn" lay-submit="" lay-filter="demo2">修改</button>
+                        <button class="layui-btn" lay-submit="" lay-filter="demo2">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div th:include="footer.html :: footer"></div>
+</div>
+<script th:src="@{/layui/layui.js}"></script>
+<script>
+    //JavaScript代码区域
+    layui.use(['element', 'laydate', 'form'], function() {
+        var element = layui.element,
+            laydate = layui.laydate,
+            form = layui.form;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#birthday' //指定元素
+        });
+    });
+</script>
+</body>
+</html>
