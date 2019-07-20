@@ -278,3 +278,13 @@
 .layui-icon {
     color: #1E9FFF;
 }
+
+#login {
+    width: 400px;
+    height: 200px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -250px;
+}
