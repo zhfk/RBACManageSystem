@@ -27,11 +27,6 @@ public class UserController {
     public void addUser(@RequestParam(name = "name") String name,
                         @RequestParam(name = "account") String account,
                         @RequestParam(name = "pass") String pass){
-        User user = new User();
-        user.setName(name);
-        user.setAccount(account);
-        user.setPwd(pass);
-        userService.addUser(user);
     }
 
     @GetMapping(value = "/user/info")

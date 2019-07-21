@@ -42,7 +42,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">爱好</label>
                         <div class="layui-input-block">
-                            <input type="text" name="hobby" placeholder="凉皮、沙拉、柠檬茶 ... --吃，我所欲也！" autocomplete="off" class="layui-input">
+                            <input type="text" name="hobby" placeholder="凉皮、沙拉、柠檬茶、... --吃，我所欲也！" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-form-item">
@@ -54,44 +54,44 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">籍贯</label>
                         <div class="layui-input-inline">
-                            <select name="quiz1">
+                            <select id="province" name="province" lay-filter="province">
                                 <option value="">请选择省</option>
-                                <option value="浙江" selected="">浙江省</option>
-                                <option value="你的工号">江西省</option>
-                                <option value="你最喜欢的老师">福建省</option>
                             </select>
                         </div>
                         <div class="layui-input-inline">
-                            <select name="quiz2">
-                                <option value="">请选择市</option>
-                                <option value="杭州">杭州</option>
-                                <option value="宁波" disabled="">宁波</option>
-                                <option value="温州">温州</option>
-                                <option value="温州">台州</option>
-                                <option value="温州">绍兴</option>
-                            </select>
+                            <div class="layui-input-inline" style="display: none;">
+                                <select id="city" name="city" lay-filter="city">
+                                    <option value="">请选择市</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="layui-input-inline">
-                            <select name="quiz3">
-                                <option value="">请选择县/区</option>
-                                <option value="西湖区">西湖区</option>
-                                <option value="余杭区">余杭区</option>
-                                <option value="拱墅区">临安市</option>
-                            </select>
+                            <div class="layui-input-inline" style="display: none;">
+                                <select id="area" name="area" lay-filter="area">
+                                    <option value="">请选择县/区</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="layui-form-item" pane="">
-                        <label class="layui-form-label">想去火星</label>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">休闲时</label>
                         <div class="layui-input-block">
-                            <input type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest" title="开关" lay-text="YES|NO">
+                            <input type="checkbox" name="like1[bilibili]" title="逛B站" checked="">
+                            <input type="checkbox" name="like1[douyin]" title="刷抖音" checked="">
+                            <input type="checkbox" name="like[read]" title="阅读">
+                            <input type="checkbox" name="like1[kuaishou]" title="刷快手">
+                            <input type="checkbox" name="like[game]" title="游戏" checked="">
+                            <input type="checkbox" name="like1[americanDrama]" title="看美剧" checked="">
+                            <input type="checkbox" name="like[write]" title="写作">
+                            <input type="checkbox" name="like[other]" title="其他">
                         </div>
                     </div>
                     <div class="layui-form-item" pane="">
                         <label class="layui-form-label">性别</label>
                         <div class="layui-input-block">
-                            <input type="radio" name="sex" value="男" title="男" checked="">
-                            <input type="radio" name="sex" value="女" title="女">
-                            <input type="radio" name="sex" value="保密" title="保密" disabled="">
+                            <input type="radio" name="sex" value="男" title="男神" checked="">
+                            <input type="radio" name="sex" value="女" title="女神">
+                            <input type="radio" name="sex" value="保密" title="无神论者" >
                         </div>
                     </div>
                     <div class="layui-form-item layui-form-text">
@@ -111,18 +111,76 @@
     <div th:include="footer.html :: footer"></div>
 </div>
 <script th:src="@{/layui/layui.js}"></script>
+<script th:src="@{/area.js}"></script>
 <script>
-    //JavaScript代码区域
-    layui.use(['element', 'laydate', 'form'], function() {
-        var element = layui.element,
-            laydate = layui.laydate,
-            form = layui.form;
+//JavaScript代码区域
+var areaData = Area;
+layui.use(['element', 'laydate', 'form'], function() {
+    var element = layui.element,
+        laydate = layui.laydate,
+        form = layui.form,
+        $ = layui.$,
+        $form = $('form');
 
-        //执行一个laydate实例
-        laydate.render({
-            elem: '#birthday' //指定元素
-        });
+    //执行一个laydate实例
+    laydate.render({
+        elem: '#birthday' //指定元素
     });
+
+    var proHtml = '';
+    for (var i = 0; i < areaData.length; i++) {
+        proHtml += '<option value="' + areaData[i].provinceCode + '_' + areaData[i].mallCityList.length + '_' + i +'">' + areaData[i].provinceName + '</option>';
+    }
+    $form.find('select[name=province]').append(proHtml);
+    form.render();
+    form.on('select(province)', function(data) {
+        $form.find('select[name=area]').html('<option value="">请选择县/区</option>').parent().hide();
+        var value = data.value;
+        var d = value.split('_');
+        var code = d[0];
+        var count = d[1];
+        var index = d[2];
+        if (count > 0) {
+            loadCity(areaData[index].mallCityList);
+        } else {
+            $form.find('select[name=city]').parent().hide();
+        }
+    });
+
+    function loadCity(citys) {
+        var cityHtml = '';
+        for (var i = 0; i < citys.length; i++) {
+            cityHtml += '<option value="' + citys[i].cityCode + '_' + citys[i].mallAreaList.length + '_' + i +'">' + citys[i].cityName + '</option>';
+        }
+        $form.find('select[name=city]').html(cityHtml).parent().show();
+        form.render();
+        form.on('select(city)', function(data) {
+            var value = data.value;
+            var d = value.split('_');
+            var code = d[0];
+            var count = d[1];
+            var index = d[2];
+            if (count > 0) {
+                loadArea(citys[index].mallAreaList);
+            } else {
+                $form.find('select[name=area]').parent().hide();
+
+            }
+        });
+    }
+//加载县/区数据
+    function loadArea(areas) {
+        var areaHtml = '';
+        for (var i = 0; i < areas.length; i++) {
+            areaHtml += '<option value="' + areas[i].areaCode + '">' + areas[i].areaName + '</option>';
+        }
+        $form.find('select[name=area]').html(areaHtml).parent().show();
+        form.render();
+        form.on('select(area)', function(data) {
+        });
+    }
+
+});
 </script>
 </body>
 </html>

@@ -14,7 +14,7 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
-#    hibernate.ddl-auto: create
+    hibernate.ddl-auto: create
   thymeleaf:
     mode: HTML5
 #    mode: LEGACYHTML5

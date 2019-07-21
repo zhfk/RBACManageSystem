@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet" />
+    <title>用户关系展示</title>
+</head>
+<body>
+    <div class="layui-body layui-tab-content site-demo site-demo-body">
+        <div class="layui-tab-item layui-show">
+            <div class="layui-main">
+                <div class="layui-text">hello, <span th:text="${userId}"></span> !</div>
+                <div id="user-relation-tree"></div>
+            </div>
+        </div>
+    </div>
+<script th:src="@{/layui/layui.js}"></script>
+<script>
+    //JavaScript代码区域
+    layui.use(['element', 'tree'], function() {
+        var element = layui.element,
+            tree = layui.tree;
+        //渲染
+        tree.render({
+            elem: '#user-relation-tree'  //绑定元素
+            ,data: [{
+                title: '江西' //一级菜单
+                ,children: [{
+                    title: '南昌' //二级菜单
+                    ,children: [{
+                        title: '高新区' //三级菜单
+                        //…… //以此类推，可无限层级
+                    }]
+                }]
+            },{
+                title: '陕西' //一级菜单
+                ,children: [{
+                    title: '西安' //二级菜单
+                }]
+            }]
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,52 +1,49 @@
 package com.auth.rbac.dao;
 
+import lombok.Data;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
+@Data
 public class User {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 64)
-    private String name;
+    @NotNull
+    private String username;
 
-    @Column(length = 64)
-    private String account;
+    @NotNull
+    private String password;
 
-    @Column(length = 64)
-    private String pwd;
+    @Column
+    private String birthday;
 
-    public Long getId() {
-        return id;
-    }
+    @Column
+    private String hobby;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Column
+    private String aphorism;
 
-    public String getName() {
-        return name;
-    }
+    @Column
+    private String province;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    @Column
+    private String city;
 
-    public String getAccount() {
-        return account;
-    }
+    @Column
+    private String country;
 
-    public void setAccount(String account) {
-        this.account = account;
-    }
+    @Column
+    private String forSpareTime;
 
-    public String getPwd() {
-        return pwd;
-    }
+    @Column
+    private String sex;
 
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
-    }
+    @Column
+    private String personalDescription;
+
 }
