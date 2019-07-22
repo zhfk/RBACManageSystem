@@ -2,11 +2,18 @@ package com.auth.rbac.service;
 
 import com.auth.rbac.dao.User;
 
-import java.util.List;
-
 public interface UserService {
 
     void addUser(User user);
-    List<User> getAllUser();
+
+    void deleteUser(Long id);
+
+    void deleteUser(User user);
+
+    void updateUser(User user);
+
+    User findUserByUsername(String username);
+
+    User findUserById(Long id);
 
 }

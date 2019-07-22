@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet"/>
+    <link th:href="@{/layui/exts/city-picker/city-picker.css}" rel="stylesheet"/>
+    <link th:href="@{/main.css}" rel="stylesheet"/>
+    <title>关于</title>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+    <div th:include="header.html :: header"></div>
+    <div th:include="left.html :: left"></div>
+    <div class="layui-body layui-tab-content site-demo site-demo-body">
+        <div class="layui-tab-item layui-show">
+            <div class="layui-main">
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>个人信息</legend>
+                </fieldset>
+                <form class="layui-form layui-form-pane" th:object="${admin}" th:action="@{/admin/update}"
+                      method="post">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">用户ID</label>
+                        <div class="layui-input-inline">
+                            <input type="text" th:field="*{id}" name="id" lay-verify="required" autocomplete="off"
+                                   class="layui-input layui-bg-gray" disabled>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">用户名</label>
+                        <div class="layui-input-inline">
+                            <input type="text" th:field="*{username}" name="username" lay-verify="required"
+                                   placeholder="请输入姓名" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-text" style="color: red; font-size: medium"><strong>*</strong></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">密码</label>
+                        <div class="layui-input-inline">
+                            <input type="password" th:field="*{password}" name="password" placeholder="********"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-text" style="color: red; font-size: medium"><strong>*</strong></div>
+
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">出生日期</label>
+                            <div class="layui-input-block">
+                                <input type="text" th:field="*{birthday}" name="date" id="birthday"
+                                       placeholder="2000-01-01" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">爱好</label>
+                        <div class="layui-input-block">
+                            <input type="text" th:field="*{hobby}" name="hobby" placeholder="凉皮、沙拉、柠檬茶、... --吃，我所欲也！"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">名言</label>
+                        <div class="layui-input-block">
+                            <input type="text" th:field="*{aphorism}" name="aphorism"
+                                   placeholder="别和我谈梦想，我的梦想就每天收租 . . ." autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label width_auto text-r">省市县</label>
+                        <div class="layui-inline">
+                            <div class="layui-input-inline" style="width:400px">
+                                <input type="text" th:field="*{nativePlace}" autocomplete="on" class="layui-input" id="city-picker" name="city-picker" readonly="readonly" data-toggle="city-picker" placeholder="请选择">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">休闲时光</label>
+                        <div class="layui-input-block">
+                            <input type="text" th:field="*{forSpareTime}" name="forSpareTime"
+                                   placeholder="逛B站、刷抖音、阅读、快手、游戏、美剧、写作 ..." autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item" pane="">
+                        <label class="layui-form-label">性别</label>
+                        <div class="layui-input-block">
+                            <input type="radio" th:checked="*{gender eq '男'}" name="gender" value="男" title="男神"
+                                   checked="">
+                            <input type="radio" th:checked="*{gender eq '女'}" name="gender" value="女" title="女神">
+                            <input type="radio" th:checked="*{gender eq '保密'}" name="gender" value="保密" title="无神论者" checked>
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">个人说明</label>
+                        <div class="layui-input-block">
+                            <textarea th:field="*{personalDescription}" placeholder="每个人都只有一种命运 . . .   --《教父》"
+                                      class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <button class="layui-btn" lay-submit="" lay-filter="demo2">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div th:include="footer.html :: footer"></div>
+</div>
+<script th:src="@{/layui/layui.js}"></script>
+<script th:src="@{/layui/exts/city-picker/city-picker.data.js}"></script>
+</body>
+<script>
+    layui.config({
+        base: '/layui/exts/' //假设这是你存放拓展模块的根目录
+    }).extend({
+        citypicker: 'city-picker/city-picker' // {/}的意思即代表采用自有路径，即不跟随 base 路径
+    }).use(['element', 'laydate', 'form', 'citypicker'], function () {
+        var element = layui.element,
+            laydate = layui.laydate,
+            $ = layui.$,
+            cityPicker = layui.citypicker;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#birthday' //指定元素
+        });
+
+        var currentPicker = new cityPicker("#city-picker", {
+            provincename:"provinceId",
+            cityname:"cityId",
+            districtname: "districtId",
+            level: 'districtId',// 级别
+        });
+        // currentPicker.setValue("上海市/上海市/静安区");
+    });
+</script>
+</html>
