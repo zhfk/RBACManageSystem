@@ -279,6 +279,10 @@
     color: #1E9FFF;
 }
 
+.table-batch-op {
+    color: #FBFBFB;
+}
+
 #login {
     width: 400px;
     height: 200px;

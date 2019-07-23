@@ -1,6 +1,8 @@
 package com.auth.rbac.service;
 
 import com.auth.rbac.dao.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface UserService {
 
@@ -12,8 +14,12 @@ public interface UserService {
 
     void updateUser(User user);
 
-    User findUserByUsername(String username);
+    User getUserByUsername(String username);
 
-    User findUserById(Long id);
+    User getUserById(Long id);
+
+    Page<User> getUserByPage(Pageable pageable);
+
+    long getUserNum();
 
 }

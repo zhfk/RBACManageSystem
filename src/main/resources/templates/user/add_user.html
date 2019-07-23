@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet"/>
+    <title>添加用户</title>
+</head>
+<body>
+<div class="layui-container">
+        <div class="layui-main">
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>用户信息</legend>
+            </fieldset>
+            <form class="layui-form layui-form-pane">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="username" lay-verify="required" placeholder="请输入用户名" autocomplete="off"
+                               value="张三丰" class="layui-input" required>
+                    </div>
+                    <div class="layui-text" style="color: red; font-size: medium"><strong>*</strong></div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">来源</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="organization" placeholder="请输入来源" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">邮箱</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="email" placeholder="请输入用户邮箱" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item" pane="">
+                    <label class="layui-form-label">性别</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="gender" value="男" title="男神">
+                        <input type="radio" name="gender" value="女" title="女神">
+                        <input type="radio" name="gender" value="保密" title="无神论者" checked>
+                    </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">备注</label>
+                    <div class="layui-input-block">
+                        <textarea name="description" placeholder="用户备注信息 ..." class="layui-textarea"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+</div>
+<script th:src="@{/layui/layui.js}"></script>
+<script>
+    //JavaScript代码区域
+    layui.use(['element', 'form'], function () {
+        var element = layui.element,
+            form = layui.form;
+    });
+</script>
+</body>
+</html>

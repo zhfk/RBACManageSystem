@@ -20,4 +20,9 @@ public class ObjectManageController {
         modelMap.addAttribute("userId", userId);
         return "relation/user_relation_iframe";
     }
+
+    @GetMapping(value = "/manage/add/user")
+    public String manageAddUser(){
+        return "user/add_user";
+    }
 }

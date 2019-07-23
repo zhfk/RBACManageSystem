@@ -4,6 +4,8 @@ import com.auth.rbac.dao.User;
 import com.auth.rbac.repository.UserRepository;
 import com.auth.rbac.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -35,17 +37,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserByUsername(String username) {
+    public User getUserByUsername(String username) {
         return userRepository.findUserByUsername(username);
     }
 
     @Override
-    public User findUserById(Long id) {
+    public User getUserById(Long id) {
         User user = null;
         Optional<User> optionalUser = userRepository.findById(id);
         if(optionalUser.isPresent()){
             user = optionalUser.get();
         }
         return user;
+    }
+
+    @Override
+    public Page<User> getUserByPage(Pageable pageable) {
+        return userRepository.findAll(pageable);
+    }
+
+    @Override
+    public long getUserNum() {
+        return userRepository.count();
     }
 }
