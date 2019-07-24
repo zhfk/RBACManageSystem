@@ -11,32 +11,29 @@
             <fieldset class="layui-elem-field layui-field-title">
                 <legend>用户信息</legend>
             </fieldset>
-            <form class="layui-form layui-form-pane">
+            <form class="layui-form layui-form-pane" style="width: 720px">
                 <div class="layui-form-item">
                     <label class="layui-form-label">用户名</label>
                     <div class="layui-input-inline">
                         <input type="text" name="username" lay-verify="required" placeholder="请输入用户名" autocomplete="off"
-                               value="张三丰" class="layui-input" required>
+                               value="" class="layui-input" required>
                     </div>
                     <div class="layui-text" style="color: red; font-size: medium"><strong>*</strong></div>
                 </div>
                 <div class="layui-form-item">
-                    <div class="layui-inline">
-                        <label class="layui-form-label">来源</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="organization" placeholder="请输入来源" autocomplete="off"
-                                   class="layui-input">
+                    <label class="layui-form-label">来源</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="organization" lay-verify="required" placeholder="请输入来源" autocomplete="off"
+                                   class="layui-input" required>
                         </div>
-                    </div>
+                        <div class="layui-text" style="color: red; font-size: medium"><strong>*</strong></div>
                 </div>
                 <div class="layui-form-item">
-                    <div class="layui-inline">
                         <label class="layui-form-label">邮箱</label>
-                        <div class="layui-input-block">
+                        <div class="layui-input-inline">
                             <input type="text" name="email" placeholder="请输入用户邮箱" autocomplete="off"
-                                   class="layui-input">
+                                   class="layui-input" lay-verify="email">
                         </div>
-                    </div>
                 </div>
                 <div class="layui-form-item" pane="">
                     <label class="layui-form-label">性别</label>
@@ -61,6 +58,19 @@
     layui.use(['element', 'form'], function () {
         var element = layui.element,
             form = layui.form;
+        form.verify({
+            username: function(value, item){ //value：表单的值、item：表单的DOM对象
+                if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+                    return '用户名不能有特殊字符';
+                }
+                if(/(^\_)|(\__)|(\_+$)/.test(value)){
+                    return '用户名首尾不能出现下划线\'_\'';
+                }
+                if(/^\d+\d+\d$/.test(value)){
+                    return '用户名不能全为数字';
+                }
+            }
+        });
     });
 </script>
 </body>

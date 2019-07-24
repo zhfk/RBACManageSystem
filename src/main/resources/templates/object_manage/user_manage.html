@@ -41,8 +41,9 @@
                         <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="relation" href="#">
                             <i class="layui-icon layui-icon-chart" style="font-size: 10px;"></i>
                         </a>
-                        <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
-                        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
+                        <a class="layui-btn layui-btn-xs" lay-event="detail">详情</a>
+                        <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="modify">修改</a>
+                        <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="delete">删除</a>
                     </div>
                 </script>
 
@@ -70,27 +71,61 @@
             page: true,
             cols: [[
                 {type:'checkbox',      fixed: 'left'},
-                {field:'id',           title:'ID',   width:80,  fixed: 'left', sort: true},
-                {field:'username',     title:'用户',  width:120, edit: 'text',  search: true},
-                {field:'organization', title:'组织',  width:150, edit: 'text'},
-                {field:'email',        title:'邮箱',  width:150, edit: 'text'},
-                {field:'gender',       title:'性别',  width:80,  edit: 'text',   sort: true},
-                {title:'操作',          fixed:'right', width:145, align:'center', toolbar: '#user-tool-bar'}
+                {field:'id',           title:'ID' ,  fixed: 'left', sort: true},
+                {field:'username',     title:'用户',  sort: true},
+                {field:'organization', title:'组织',  sort: true},
+                {field:'email',        title:'邮箱',  },
+                {field:'gender',       title:'性别',  sort: true},
+                {field:'description',  title:'备注',  },
+                {title:'操作',  width:190,  fixed:'right', align:'center', toolbar: '#user-tool-bar'}
             ]]
         });
 
-        //监听表格复选框选择
-        table.on('checkbox(user)', function(obj){
-            console.log(obj)
-        });
         //监听工具条
         table.on('tool(user)', function(obj){
             var data = obj.data;
             if(obj.event === 'detail'){
-                layer.alert('<pre class="layui-code">'+JSON.stringify(data, null, '\t')+"</pre>")
+                layer.open({
+                    type: 1
+                    ,title: '用户信息' //不显示标题栏
+                    ,closeBtn: false
+                    ,area: '300px;'
+                    ,shade: 0.8
+                    ,btn: ['了解了']
+                    ,btnAlign: 'c'
+                    ,moveType: 1 //拖拽模式，0或者1
+                    ,content: '<pre class="layui-code">'+JSON.stringify(data, null, '\t')+"</pre>"
+                });
+            }else if(obj.event === 'modify'){
+                layer.alert('暂不支持')
             } else if(obj.event === 'delete'){
                 layer.confirm('真的要删除'+data.username+'吗？', function(index){
                     obj.del();
+                    $.ajax({
+                        url:"/user/delete",
+                        type:'delete',
+                        data:{
+                            id: data.id
+                        },
+                        success:function(data){
+                            if(data.status === 'error'){
+                                layer.msg("删除失败,"+data,{
+                                    icon: 5,
+                                    area : ['100px' , '50px'],
+                                });//失败的表情
+                            }else{
+                                location.reload();
+                                layer.msg("删除成功", {
+                                    icon: 6,//成功的表情
+                                    time: 1000, //1秒关闭（如果不配置，默认是3秒）
+                                    area : ['100px' , '50px'],
+                                });
+                            }
+                        },
+                        complete: function () {
+                            layer.close(index);
+                        }
+                    })
                     layer.close(index);
                 });
             } else if(obj.event === 'relation'){
@@ -111,15 +146,41 @@
                 if(data.length>0){
                     layer.open({
                         content: '删除这'+data.length+'个用户吗？'
-                        ,btn: ['确定', '取消',]
+                        ,btn: ['确定', '取消']
                         ,anim: 6
                         ,yes: function(index, layero){
-                            //do something
-                            layer.close()
+                            var id = []
+                            for(var i=0; i< data.length; i++){
+                                id.push(data[i].id)
+                            }
+                            $.ajax({
+                                url:"/user/batchDelete",
+                                type:'delete',
+                                data:{
+                                    id: id.join(",")
+                                },
+                                success:function(data){
+                                    if(data.status === 'error'){
+                                        layer.msg("删除失败,"+data,{
+                                            icon: 5,
+                                            // area : ['100px' , '50px'],
+                                        });//失败的表情
+                                    }else{
+                                        location.reload();
+                                        layer.msg("删除成功", {
+                                            icon: 6,//成功的表情
+                                            time: 1000, //1秒关闭（如果不配置，默认是3秒）
+                                            // area : ['100px' , '50px'],
+                                        });
+                                    }
+                                },
+                                complete: function () {
+                                    layer.close(index);
+                                }
+                            })
                         }
                         ,cancel: function(){
                             //右上角关闭回调
-
                             // return false //开启该代码可禁止点击该按钮关闭
                         }
                     });
@@ -138,7 +199,7 @@
                     maxmin: true,
                     shadeClose: true, //点击遮罩关闭层
                     title: "添加用户",
-                    area : ['800px' , '600px'],
+                    area : ['800px' , '550px'],
                     content: '/manage/add/user',
                     btn: ['确认'],
                     yes: function (index, layero) {
@@ -151,9 +212,9 @@
                             gender_unkonw = input[5];
                          var desc = layer.getChildFrame('textarea', index);
 
-                        if(username === "") {
+                        if(username === "" || organization === "") {
                             //配置一个透明的询问框
-                            layer.msg('用户名不能为空', {
+                            layer.msg('必填项不能为空', {
                                 time: 1000, //1s后自动关闭
                             });
                             layer.close()
@@ -161,7 +222,7 @@
                         }
 
                         function getGender(radio1, radio2){
-                            return radio1.Checked ? radio1 : radio2
+                            return radio1.checked ? radio1 : radio2
                         }
 
                         var gender = getGender(getGender(gender_male,gender_female),gender_unkonw)
@@ -178,15 +239,15 @@
                             },
                             success:function(data){
                                 if(data.status === 'error'){
-                                    layer.msg("添加失败！"+data.msg,{
+                                    layer.msg("添加失败！"+data,{
                                         icon: 5,
-                                        area : ['100px' , '60px'],
+                                        // area : ['100px' , '60px'],
                                     });//失败的表情
                                 }else{
-                                    layer.msg("添加成功", {
+                                    layer.msg(data, {
                                         icon: 6,//成功的表情
                                         time: 1000, //2秒关闭（如果不配置，默认是3秒）
-                                        area : ['100px' , '60px'],
+                                        // area : ['100px' , '60px'],
                                     }, function(){
                                         location.reload();
                                     });

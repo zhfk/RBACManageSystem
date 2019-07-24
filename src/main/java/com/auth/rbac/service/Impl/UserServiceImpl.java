@@ -3,12 +3,16 @@ package com.auth.rbac.service.Impl;
 import com.auth.rbac.dao.User;
 import com.auth.rbac.repository.UserRepository;
 import com.auth.rbac.service.UserService;
+import com.sun.tools.javac.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -32,12 +36,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void deleteUsers(String ids) {
+        java.util.List<Long> idList = Arrays.stream(ids.split(",")).map(Long::valueOf).collect(Collectors.toList());
+        userRepository.deleteUsers(idList);
+    }
+
+    @Override
     public void updateUser(User user) {
         userRepository.save(user);
     }
 
     @Override
-    public User getUserByUsername(String username) {
+    public Optional<User> getUserByUsername(String username) {
         return userRepository.findUserByUsername(username);
     }
 
