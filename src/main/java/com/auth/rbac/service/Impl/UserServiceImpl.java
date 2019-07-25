@@ -3,15 +3,20 @@ package com.auth.rbac.service.Impl;
 import com.auth.rbac.dao.User;
 import com.auth.rbac.repository.UserRepository;
 import com.auth.rbac.service.UserService;
-import com.sun.tools.javac.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Optional;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,6 +27,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addUser(User user) {
+        userRepository.save(user);
+    }
+
+    @Override
+    public void saveUser(User user) {
         userRepository.save(user);
     }
 
@@ -62,12 +72,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<User> getUserByPage(Pageable pageable) {
-        return userRepository.findAll(pageable);
+    public Page<User> getUserByPage(Integer page, Integer limit) {
+        return userRepository.findAll(PageRequest.of(page, limit));
     }
 
     @Override
     public long getUserNum() {
         return userRepository.count();
+    }
+
+    @Override
+    public Page<User> findByUsernameLike(Integer page, Integer limit, String username) {
+        Specification<User> spec = new Specification<User>() {
+            @Override
+            public Predicate toPredicate(Root<User> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+                List<Predicate> pr = new ArrayList<>();
+                if(!StringUtils.isEmpty(username)) {
+                    pr.add(criteriaBuilder.like(root.get("username").as(String.class), "%" + username + "%"));
+                }
+                return criteriaBuilder.and(pr.toArray(new Predicate[0]));
+            }
+        };
+        return userRepository.findAll(spec, PageRequest.of(page, limit,new Sort(Sort.Direction.DESC,"id")));
     }
 }

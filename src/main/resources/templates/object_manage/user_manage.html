@@ -23,18 +23,21 @@
                     <button type="button" class="layui-btn" data-type="addUser">
                         添加用户 <i class="layui-icon layui-icon-add-circle table-batch-op"></i>
                     </button>
+                    <button type="button" class="layui-btn layui-btn-normal" data-type="refresh">
+                        刷新<i class="layui-icon layui-icon-refresh-3 table-batch-op"></i>
+                    </button>
                 </div>
 
-                <div class="demoTable" style="float: right;">
+                <div class="userTable" style="float: right;">
                     搜索用户：
                     <div class="layui-inline">
-                        <input class="layui-input" name="id" id="demoReload" autocomplete="off">
+                        <input class="layui-input" name="searchUser" id="searchUser" autocomplete="on">
                     </div>
                     <button class="layui-btn" data-type="reload">
                         <i class="layui-icon layui-icon-search table-batch-op" style="font-size: 20px; color: whitesmoke"></i>
                     </button>
                 </div>
-                <table id="user-list" lay-filter="user" lay-data="id:'userId'"></table>
+                <table id="user-list" lay-filter="user" lay-data="{id: 'tableReload'}"></table>
 
                 <script type="text/html" id="user-tool-bar">
                     <div class="layui-btn-container">
@@ -63,10 +66,10 @@
         table.render({
             elem: '#user-list',
             url: '/user/getPageUser',
-            id:'userId',
+            id:'tableReload',
             toolbar: false,
             title: true,
-            limits: [10, 15, 20, 50],
+            limits: [5, 10, 15, 20, 50],
             limit: 10, //每页默认显示的数量
             page: true,
             cols: [[
@@ -97,7 +100,79 @@
                     ,content: '<pre class="layui-code">'+JSON.stringify(data, null, '\t')+"</pre>"
                 });
             }else if(obj.event === 'modify'){
-                layer.alert('暂不支持')
+                layer.open({
+                    type: 2,
+                    maxmin: true,
+                    shadeClose: true, //点击遮罩关闭层
+                    title: "修改用户信息",
+                    area : ['800px' , '550px'],
+                    content: '/manage/user/info?userId='+data.id,
+                    btn: ['确认'],
+                    yes: function (index, layero) {
+                        var input = layer.getChildFrame('input', index);
+                        var username = input[0].value,
+                            organization = input[1].value,
+                            email = input[2].value,
+                            gender_male = input[3],
+                            gender_female = input[4],
+                            gender_unkonw = input[5];
+                        var desc = layer.getChildFrame('textarea', index);
+
+                        if(username === "" || organization === "") {
+                            //配置一个透明的询问框
+                            layer.msg('必填项不能为空', {
+                                time: 1000, //1s后自动关闭
+                            });
+                            layer.close()
+                            return;
+                        }
+
+                        function getGender(radio1, radio2){
+                            return radio1.checked ? radio1 : radio2
+                        }
+
+                        var gender = getGender(getGender(gender_male,gender_female),gender_unkonw)
+
+                        $.ajax({
+                            url:"/user/modify",
+                            type:'post',
+                            data:{
+                                id: data.id,
+                                username: username,
+                                organization: organization,
+                                email: email,
+                                gender: gender.value,
+                                description: desc[0].value
+                            },
+                            success:function(data){
+                                if(data.status === 'error'){
+                                    layer.msg("修改失败！"+data,{
+                                        icon: 5,
+                                        // area : ['100px' , '60px'],
+                                    });//失败的表情
+                                }else{
+                                    layer.msg(data, {
+                                        icon: 6,//成功的表情
+                                        time: 1000, //2秒关闭（如果不配置，默认是3秒）
+                                        // area : ['100px' , '60px'],
+                                    }, function(){
+                                        //执行重载
+                                        table.reload('tableReload', {
+                                            url: '/user/getPageUser',
+                                            page: {
+                                                curr: 1 //重新从第 1 页开始
+                                            }
+                                        });
+                                    });
+                                }
+                            },
+                            complete: function () {
+
+                                layer.close(index);
+                            }
+                        })
+                    }
+                });
             } else if(obj.event === 'delete'){
                 layer.confirm('真的要删除'+data.username+'吗？', function(index){
                     obj.del();
@@ -114,15 +189,22 @@
                                     area : ['100px' , '50px'],
                                 });//失败的表情
                             }else{
-                                location.reload();
                                 layer.msg("删除成功", {
                                     icon: 6,//成功的表情
                                     time: 1000, //1秒关闭（如果不配置，默认是3秒）
                                     area : ['100px' , '50px'],
                                 });
+                                //执行重载
+                                table.reload('tableReload', {
+                                    url: '/user/getPageUser',
+                                    page: {
+                                        curr: 1 //重新从第 1 页开始
+                                    }
+                                });
                             }
                         },
                         complete: function () {
+
                             layer.close(index);
                         }
                     })
@@ -140,8 +222,22 @@
         });
 
         var $ = layui.$, active = {
+            reload: function(){
+                var searchUser = $('#searchUser');
+
+                //执行重载
+                table.reload('tableReload', {
+                    url: '/user/search',
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    ,where: {
+                        username: searchUser.val()
+                    }
+                }, 'data');
+            },
             deleteUsers: function(){ //获取选中数据
-                var checkStatus = table.checkStatus('userId')
+                var checkStatus = table.checkStatus('tableReload')
                     ,data = checkStatus.data;
                 if(data.length>0){
                     layer.open({
@@ -172,6 +268,13 @@
                                             time: 1000, //1秒关闭（如果不配置，默认是3秒）
                                             // area : ['100px' , '50px'],
                                         });
+                                        //执行重载
+                                        table.reload('tableReload', {
+                                            url: '/user/getPageUser',
+                                            page: {
+                                                curr: 1 //重新从第 1 页开始
+                                            }
+                                        });
                                     }
                                 },
                                 complete: function () {
@@ -192,8 +295,6 @@
                 }
             }
             ,addUser: function(){ //获取选中数目
-                // var checkStatus = table.checkStatus('userId')
-                    // ,data = checkStatus.data;
                 layer.open({
                     type: 2,
                     maxmin: true,
@@ -249,7 +350,13 @@
                                         time: 1000, //2秒关闭（如果不配置，默认是3秒）
                                         // area : ['100px' , '60px'],
                                     }, function(){
-                                        location.reload();
+                                        //执行重载
+                                        table.reload('tableReload', {
+                                            url: '/user/getPageUser',
+                                            page: {
+                                                curr: 1 //重新从第 1 页开始
+                                            }
+                                        });
                                     });
                                 }
                             },
@@ -261,6 +368,15 @@
                 });
 
             }
+            ,refresh: function(){
+                //执行重载
+                table.reload('tableReload', {
+                    url: '/user/getPageUser',
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                });
+            },
         };
 
         $('.userTable .layui-btn').on('click', function(){

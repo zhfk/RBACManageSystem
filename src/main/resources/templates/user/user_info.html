@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet"/>
+    <title>添加用户</title>
+</head>
+<body>
+<div class="layui-container">
+        <div class="layui-main">
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>用户信息</legend>
+            </fieldset>
+            <form class="layui-form layui-form-pane" th:object="${user}" style="width: 720px">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" th:value="*{username}" name="username" lay-verify="required" placeholder="请输入用户名" autocomplete="off"
+                               value="" class="layui-input" required>
+                    </div>
+                    <div class="layui-text" style="color: red; font-size: medium"><strong>*</strong></div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">来源</label>
+                        <div class="layui-input-inline">
+                            <input type="text" th:value="*{organization}" name="organization" lay-verify="required" placeholder="请输入来源" autocomplete="off"
+                                   class="layui-input" required>
+                        </div>
+                        <div class="layui-text" style="color: red; font-size: medium"><strong>*</strong></div>
+                </div>
+                <div class="layui-form-item">
+                        <label class="layui-form-label">邮箱</label>
+                        <div class="layui-input-inline">
+                            <input type="text" th:value="*{email}" name="email" placeholder="请输入用户邮箱" autocomplete="off"
+                                   class="layui-input" lay-verify="email">
+                        </div>
+                </div>
+                <div class="layui-form-item" pane="">
+                    <label class="layui-form-label">性别</label>
+                    <div class="layui-input-block">
+                        <input type="radio" th:checked="*{gender eq '男'}" name="gender" value="男" title="男神">
+                        <input type="radio" th:checked="*{gender eq '女'}" name="gender" value="女" title="女神">
+                        <input type="radio" th:checked="*{gender eq '保密'}" name="gender" value="保密" title="无神论者" checked>
+                    </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">备注</label>
+                    <div class="layui-input-block">
+                        <textarea name="description" th:field="*{description}" placeholder="用户备注信息 ..." class="layui-textarea"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+</div>
+<script th:src="@{/layui/layui.js}"></script>
+<script>
+    //JavaScript代码区域
+    layui.use(['element', 'form'], function () {
+        var element = layui.element,
+            form = layui.form;
+        form.verify({
+            username: function(value, item){ //value：表单的值、item：表单的DOM对象
+                if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+                    return '用户名不能有特殊字符';
+                }
+                if(/(^\_)|(\__)|(\_+$)/.test(value)){
+                    return '用户名首尾不能出现下划线\'_\'';
+                }
+                if(/^\d+\d+\d$/.test(value)){
+                    return '用户名不能全为数字';
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

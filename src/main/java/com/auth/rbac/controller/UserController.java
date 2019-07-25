@@ -40,13 +40,40 @@ public class UserController {
         }
     }
 
+    @PostMapping(value = "/user/modify")
+    @ResponseBody
+    public String modifyUser(@RequestParam(value = "id") long id,
+                          @RequestParam(value = "username") String username,
+                          @RequestParam(value = "organization") String organization,
+                          @RequestParam(value = "email") String email,
+                          @RequestParam(value = "gender") String gender,
+                          @RequestParam(value = "description") String description){
+        User user = userService.getUserById(id);
+        user.setUsername(username);
+        user.setOrganization(organization);
+        user.setEmail(email);
+        user.setGender(gender);
+        user.setDescription(description);
+        userService.addUser(user);
+            return "修改 " + username + " 成功!";
+    }
+
     @GetMapping(value = "/user/getPageUser")
     @ResponseBody
     public ResponseData getPageUser(@RequestParam(value = "page") Integer page,
                                          @RequestParam(value = "limit") Integer limit){
         long userNum = userService.getUserNum();
-        Page<User> users = userService.getUserByPage(PageRequest.of(page - 1, limit));
-        return new ResponseData<>(0, "succeed", userNum, users.getContent());
+        Page<User> users = userService.getUserByPage(page-1, limit);
+        return new ResponseData<>(0, "succeed", users.getTotalElements(), users.getContent());
+    }
+
+    @GetMapping(value = "/user/search")
+    @ResponseBody
+    public ResponseData search(@RequestParam(value = "page") Integer page,
+                               @RequestParam(value = "limit") Integer limit,
+                               @RequestParam(value = "username") String username){
+        Page<User> users = userService.findByUsernameLike(page-1, limit, username);
+        return new ResponseData<>(0, "succeed", users.getTotalElements(), users.getContent());
     }
 
     @DeleteMapping(value = "/user/delete")
