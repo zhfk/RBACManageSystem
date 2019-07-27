@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet"/>
+    <title>添加资源</title>
+</head>
+<body>
+<div class="layui-container">
+        <div class="layui-main">
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>资源信息</legend>
+            </fieldset>
+            <form class="layui-form layui-form-pane" style="width: 720px">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">名称</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="name" lay-verify="required" placeholder="请输入名称" autocomplete="off"
+                               value="" class="layui-input" required>
+                    </div>
+                    <div class="layui-text" style="color: red; font-size: medium"><strong>*</strong></div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">备注</label>
+                    <div class="layui-input-block">
+                        <textarea name="desc" placeholder="备注信息 ..." class="layui-textarea"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+</div>
+<script th:src="@{/layui/layui.js}"></script>
+<script>
+    //JavaScript代码区域
+    layui.use(['element', 'form'], function () {
+        var element = layui.element,
+            form = layui.form;
+        form.verify({
+            name: function(value, item){ //value：表单的值、item：表单的DOM对象
+                if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+                    return '名称不能有特殊字符';
+                }
+                if(/(^\_)|(\__)|(\_+$)/.test(value)){
+                    return '名称首尾不能出现下划线\'_\'';
+                }
+                if(/^\d+\d+\d$/.test(value)){
+                    return '名称不能全为数字';
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -20,44 +20,30 @@
                 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
                     <legend>条件选择</legend>
                 </fieldset>
-                <form class="layui-form" action="">
+                <form class="layui-form" th:action="@{/search/policy}">
                     <div class="layui-form-item">
                         <div class="layui-input-inline">
-                            <select name="quiz1">
-                                <option value="all" selected>用户(*)</option>
-                                <option value="" >乔峰</option>
-                                <option value="">段誉</option>
-                                <option value="">王语嫣</option>
-                                <option value="">段正淳</option>
+                            <select id="user" name="user" lay-filter="listUser" lay-search>
+                                <option value="" selected>用户(*)</option>
                             </select>
                         </div>
                         <div class="layui-input-inline">
-                            <select name="quiz2">
-                                <option value="non" selected>角色/组(*)</option>
-                                <option value="">admin</option>
-                                <option value="" >user</option>
-                                <option value="">maintainer</option>
-                                <option value="">guest</option>
-                                <option value="">developer</option>
+                            <select id="role" name="role" lay-filter="listRole" lay-search>
+                                <option value="" selected>角色/组(*)</option>
                             </select>
                         </div>
                         <div class="layui-input-inline">
-                            <select name="quiz3">
-                                <option value="non" selected>资源(*)</option>
-                                <option value="">hdfs</option>
-                                <option value="">hive</option>
+                            <select id="resource" name="resource" lay-filter="listResource" lay-search>
+                                <option value="" selected>资源(*)</option>
                             </select>
                         </div>
                         <div class="layui-input-inline">
-                            <select name="quiz3">
-                                <option value="non" selected>权限(*)</option>
-                                <option value="">create</option>
-                                <option value="">drop</option>
-                                <option value="">insert</option>
+                            <select id="privilege" name="privilege" lay-filter="listPrivilege" lay-search>
+                                <option value="" selected>权限(*)</option>
                             </select>
                         </div>
                         <div class="layui-btn-container">
-                            <button type="button" class="layui-btn layui-btn">
+                            <button type="submit" class="layui-btn layui-btn">
                                 <i class="layui-icon layui-icon-search" style="font-size: 25px; color: whitesmoke"></i>
                             </button>
                         </div>
@@ -76,7 +62,36 @@
     //JavaScript代码区域
     layui.use(['element', 'form'], function() {
         var element = layui.element,
-        form = layui.form;
+            form = layui.form,
+            $ = layui.$;
+
+        $.ajax({
+            url:"/search/conditionList",
+            type: "get",
+            dataType: 'json',
+            success:function(data){
+
+                var users = data.users,
+                    roles = data.roles,
+                    resources = data.resources,
+                    privileges = data.privileges;
+
+                for(var i=0; i< users.length; i++){
+                    $('#user').append(new Option(users[i].name, users[i].name))
+                }
+                for(var i=0; i< roles.length; i++){
+                    $('#role').append(new Option(roles[i].name, roles[i].name))
+                }
+                for(var i=0; i< resources.length; i++){
+                    $('#resource').append(new Option(resources[i].name, resources[i].name))
+                }
+                for(var i=0; i< privileges.length; i++){
+                    $('#privilege').append(new Option(privileges[i].name, privileges[i].name))
+                }
+                layui.form.render("select");
+            }
+        })
+
     });
 </script>
 </body>

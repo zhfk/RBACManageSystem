@@ -7,27 +7,16 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
-public class User {
+public class Resource {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
     @NotNull
-    @Column
-    private String username;
+    @Column(name = "`name`")
+    private String name;
 
-    @Column
-    private String organization;
-
-    @Column
-    private String email;
-
-    @Column
-    private String gender;
-
-    @Column
-    private String description;
-
-
+    @Column(name = "`desc`")
+    private String desc;
 }
