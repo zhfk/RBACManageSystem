@@ -66,9 +66,12 @@
             $ = layui.$;
 
         $.ajax({
-            url:"/search/conditionList",
+            url:"/search/subList",
             type: "get",
             dataType: 'json',
+            data:{
+                conds: "users,roles,resources,privileges"
+            },
             success:function(data){
 
                 var users = data.users,

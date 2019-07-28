@@ -19,7 +19,7 @@ spring:
       serialization:
         indent-output=true: true
   thymeleaf:
-    mode: HTML5
+    mode: THYMELEAF
 #    mode: LEGACYHTML5
     encoding: UTF-8
     cache: false

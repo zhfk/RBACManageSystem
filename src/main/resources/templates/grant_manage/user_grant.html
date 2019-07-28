@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet" />
+    <link th:href="@{/main.css}" rel="stylesheet" />
+    <title>搜索</title>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+    <div th:include="header.html :: header"></div>
+    <div th:include="left.html :: left"></div>
+    <div class="layui-body layui-tab-content site-demo site-demo-body">
+        <div class="layui-tab-item layui-show">
+            <div class="layui-main">
+                <blockquote class="layui-elem-quote layui-text">
+                    用户既可以单独操作某个权限，也可以通过加入组(授予角色)获取权限
+                </blockquote>
+                <div class="layui-container">
+                    <div class="layui-col-md6">
+                        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                            <legend>用户-资源授权</legend>
+                        </fieldset>
+                        <form class="layui-form" th:action="@{/grant/user}" th:method="post">
+                            <div class="layui-form-item">
+                                <div class="layui-input-inline">
+                                    <select id="user-grant" name="user" lay-filter="listUser" lay-search>
+                                        <option value="" selected>用户(*)</option>
+                                    </select>
+                                </div>
+                                <div class="layui-input-inline">
+                                    <select id="resource-grant" name="resource" lay-filter="listResource" lay-search>
+                                        <option value="" selected>资源(*)</option>
+                                    </select>
+                                </div>
+                                <div class="layui-btn-container">
+                                    <button type="submit" class="layui-btn layui-btn">
+                                        <i class="layui-icon layui-icon-search" style="font-size: 25px; color: whitesmoke"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+                            <legend>授权</legend>
+                        </fieldset>
+                        <div id="user-resource-grant" class="layui-trans"></div>
+                    </div>
+                    <div class="layui-col-md6">
+                        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                            <legend>用户-角色绑定</legend>
+                        </fieldset>
+                        <form class="layui-form" th:action="@{/bind/user}" th:method="post">
+                            <div class="layui-form-item">
+                                <div class="layui-input-inline">
+                                    <select id="user-bind" name="user" lay-filter="listUser" lay-search>
+                                        <option value="" selected>用户(*)</option>
+                                    </select>
+                                </div>
+                                <div class="layui-btn-container">
+                                    <button type="submit" class="layui-btn layui-btn">
+                                        <i class="layui-icon layui-icon-search" style="font-size: 25px; color: whitesmoke"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+                            <legend>绑定</legend>
+                        </fieldset>
+                        <div id="user-role-bind" class="layui-trans"></div>
+                    </div>
+                </div>
+                <div class="layui-input-inline" style="margin-top: 15px; margin-right: 48%; float: right">
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    <button class="layui-btn" lay-submit="" lay-filter="submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:include="footer.html :: footer"></div>
+</div>
+<script th:src="@{/layui/layui.js}"></script>
+<script>
+    //JavaScript代码区域
+    layui.use(['element', 'form','transfer', 'layer', 'util'], function() {
+        var element = layui.element,
+            form = layui.form,
+            $ = layui.$,
+            transfer = layui.transfer,
+            layer = layui.layer,
+            util = layui.util;
+
+        $.ajax({
+            url:"/search/subList",
+            type: "get",
+            dataType: 'json',
+            data:{
+                conds: "users,resources"
+            },
+            success:function(data){
+
+                var users = data.users,
+                    resources = data.resources;
+
+                for(var i=0; i< users.length; i++){
+                    $('#user-grant').append(new Option(users[i].name, users[i].name))
+                    $('#user-bind').append(new Option(users[i].name, users[i].name))
+                }
+                for(var i=0; i< resources.length; i++){
+                    $('#resource-grant').append(new Option(resources[i].name, resources[i].name))
+                }
+                layui.form.render("select");
+            }
+        })
+
+        //模拟数据
+        var data1 = [
+            {"value": "1", "title": "李白"}
+            ,{"value": "2", "title": "杜甫"}
+            ,{"value": "3", "title": "苏轼"}
+            ,{"value": "4", "title": "李清照"}
+            ,{"value": "5", "title": "鲁迅"}
+            ,{"value": "6", "title": "巴金"}
+            ,{"value": "7", "title": "冰心"}
+            ,{"value": "8", "title": "矛盾"}
+            ,{"value": "9", "title": "贤心"}
+        ]
+            ,data2 = [
+            {"value": "1", "title": "瓦罐汤"}
+            ,{"value": "2", "title": "油酥饼"}
+            ,{"value": "3", "title": "炸酱面"}
+            ,{"value": "4", "title": "串串香", "disabled": true}
+            ,{"value": "5", "title": "豆腐脑"}
+            ,{"value": "6", "title": "驴打滚"}
+            ,{"value": "7", "title": "北京烤鸭"}
+            ,{"value": "8", "title": "烤冷面"}
+            ,{"value": "9", "title": "毛血旺", "disabled": true}
+            ,{"value": "10", "title": "肉夹馍"}
+            ,{"value": "11", "title": "臊子面"}
+            ,{"value": "12", "title": "凉皮"}
+            ,{"value": "13", "title": "羊肉泡馍"}
+            ,{"value": "14", "title": "冰糖葫芦", "disabled": true}
+            ,{"value": "15", "title": "狼牙土豆"}
+        ]
+
+        //基础效果
+        transfer.render({
+            elem: '#user-resource-grant'
+            ,data: data1
+            ,title: ['候选', '已授权']
+            ,showSearch: true
+        })
+
+        //显示搜索框
+        transfer.render({
+            elem: '#user-role-bind'
+            ,data: data2
+            ,title: ['候选', '已绑定']
+            ,showSearch: true
+        })
+
+    });
+</script>
+</body>
+</html>
