@@ -29,6 +29,11 @@ public class IndexController {
         return "other/about";
     }
 
+    @GetMapping("/relation")
+    public String relation(){
+        return "relation/relation";
+    }
+
     @GetMapping("/log")
     public String log(){
         return "log/audit";

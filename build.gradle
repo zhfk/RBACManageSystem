@@ -18,6 +18,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.casbin:casbin-spring-boot-starter:0.0.8'
+	implementation 'org.casbin:jcasbin:1.4.0'
 	implementation 'io.springfox:springfox-swagger2:2.9.2'
 	implementation 'io.springfox:springfox-swagger-ui:2.9.2'
 	runtime 'mysql:mysql-connector-java:8.0.17'
