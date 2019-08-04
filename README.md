@@ -12,4 +12,6 @@
 ./gradlew bootJar
 java -jar xxx.jar
 ```
+## 访问
+[localhost:8888](localhost:8888)
 
