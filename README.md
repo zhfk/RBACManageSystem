@@ -38,10 +38,11 @@ java -jar xxx.jar
 ## 访问
 
 [localhost:8888](localhost:8888)
+
 首页:
 ![首页](页面1.png)
 
-[授权页:
+授权页:
 ![授权页](页面2.png)
 
 ## 遇到的问题
