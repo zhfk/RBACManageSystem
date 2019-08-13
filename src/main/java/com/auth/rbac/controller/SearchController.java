@@ -4,6 +4,7 @@ import com.auth.rbac.service.PrivilegeService;
 import com.auth.rbac.service.ResourceService;
 import com.auth.rbac.service.RoleService;
 import com.auth.rbac.service.UserService;
+import org.casbin.jcasbin.main.Enforcer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +31,9 @@ public class SearchController {
 
     @Autowired
     private PrivilegeService privilegeService;
+
+    @Autowired
+    private Enforcer enforcer;
 
     @GetMapping(value = "/search/subList")
     @ResponseBody

@@ -3,11 +3,13 @@ package com.auth.rbac.controller;
 import com.auth.rbac.dao.ResponseData;
 import com.auth.rbac.dao.Role;
 import com.auth.rbac.service.RoleService;
+import org.casbin.jcasbin.main.Enforcer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -15,6 +17,9 @@ public class RoleController {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private Enforcer enforcer;
 
     @PostMapping(value = "/role/add")
     @ResponseBody
@@ -76,6 +81,24 @@ public class RoleController {
     @ResponseBody
     public void deleteRoles(@RequestParam(value = "id") String idList){
         roleService.deleteRoles(idList);
+    }
+
+    @PostMapping(value = "/role/bind")
+    @ResponseBody
+    public void bind(@RequestParam(value = "user") String user,
+                     @RequestParam(value = "roles") List<String> roles){
+        for (String role : roles) {
+            enforcer.addRoleForUser(user, role);
+        }
+    }
+
+    @PostMapping(value = "/role/unbind")
+    @ResponseBody
+    public void unbind(@RequestParam(value = "user") String user,
+                     @RequestParam(value = "roles") List<String> roles){
+        for (String role : roles) {
+            enforcer.deleteRoleForUser(user, role);
+        }
     }
 
 }

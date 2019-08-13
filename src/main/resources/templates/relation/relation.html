@@ -13,7 +13,16 @@
     <div class="layui-body layui-tab-content site-demo site-demo-body">
         <div class="layui-tab-item layui-show">
             <div class="layui-main">
-                <div id="relation-content" style="width: 100%;height:640px;"></div>
+                <form class="layui-form" style="float: right">
+                    <div class="layui-form-item">
+                        <div class="layui-input-inline">
+                            <select id="user-role" name="user-role" lay-filter="user-role" lay-search>
+                                <option value="" selected>用户/组(*)</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <div id="relation-content" style="width: 100%;height:650px"></div>
             </div>
         </div>
     </div>
@@ -27,23 +36,46 @@
     }).extend({
         echarts: 'echarts/echarts' // {/}的意思即代表采用自有路径，即不跟随 base 路径
     })
-    layui.use(['element', 'echarts'], function () {
+    layui.use(['element','form' , 'echarts'], function () {
         var element = layui.element,
             echarts = layui.echarts,
+            form = layui.form,
             $ = layui.$;
+
+        $.ajax({
+        url:"/search/subList",
+        type: "get",
+        dataType: 'json',
+        data:{
+            conds: "users,roles"
+        },
+        success:function(data){
+
+            var users = data.users,
+                roles = data.roles;
+
+            for(var i=0; i< users.length; i++){
+                $('#user-role').append(new Option(users[i].name, users[i].name))
+            }
+            for(var i=0; i< roles.length; i++){
+                $('#user-role').append(new Option(roles[i].name, roles[i].name))
+            }
+            layui.form.render("select");
+        }
+    })
 
     var myChart = echarts.init(document.getElementById('relation-content'));
     // 指定图表的配置项和数据
     var option = {
         title : {
             text: '关系展示',
-            subtext: 'Model'
+            subtext: '这是模型'
         },
         toolbox: {
             show : true,
             feature : {
                 mark : {show: true},
-                dataView : {show: true, readOnly: false},
+                dataView : {show: true, readOnly: true},
                 restore : {show: true},
                 saveAsImage : {show: true}
             }
@@ -170,6 +202,76 @@
         ]
     };
 
+    form.on('select(user-role)', function(data){
+        $.ajax(
+            {
+                url:"/relation/show",
+                type: "get",
+                dataType: 'json',
+                data:{
+                    subject: data.value
+                },
+                success:function(data){
+                    myChart.setOption(option = {
+                        toolbox: {
+                            show : true,
+                            feature : {
+                                mark : {show: true},
+                                dataView : {show: true, readOnly: true},
+                                restore : {show: true},
+                                saveAsImage : {show: true}
+                            }
+                        },
+                        calculable : false,
+
+                        series : [
+                            {
+                                name:'树图',
+                                type:'tree',
+                                orient: 'horizontal',  // vertical horizontal
+                                nodePadding: 1,
+                                label: {
+                                    normal: {
+                                        position: 'left',
+                                        verticalAlign: 'middle',
+                                        align: 'right',
+                                        fontSize: 9
+                                    }
+                                },
+
+                                leaves: {
+                                    label: {
+                                        normal: {
+                                            position: 'right',
+                                            verticalAlign: 'middle',
+                                            align: 'left'
+                                        }
+                                    }
+                                },
+
+                                lineStyle: {
+                                    color: '#5881bb',
+                                    type: 'solid' // 'curve'|'broken'|'solid'|'dotted'|'dashed'
+                                },
+
+                                expandAndCollapse: true,
+                                animationDuration: 550,
+                                animationDurationUpdate: 750,
+
+                                top: '1%',
+                                left: '7%',
+                                bottom: '1%',
+                                right: '20%',
+                                symbolSize: 10,
+
+                                data: [data]
+                            }
+                        ]
+                    })
+                }
+            }
+        )
+    });
 
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option)

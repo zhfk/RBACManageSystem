@@ -15,21 +15,16 @@
         <div class="layui-tab-item layui-show">
             <div class="layui-main">
                 <blockquote class="layui-elem-quote layui-text">
-                    可以选定多个条件进行匹配
+                    评估用户/组是否具有操作某资源的权限
                 </blockquote>
                 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-                    <legend>条件选择</legend>
+                    <legend>对象选择</legend>
                 </fieldset>
                 <form class="layui-form" th:action="@{/search/policy}">
                     <div class="layui-form-item">
                         <div class="layui-input-inline">
-                            <select id="user" name="user" lay-filter="listUser" lay-search>
-                                <option value="" selected>用户(*)</option>
-                            </select>
-                        </div>
-                        <div class="layui-input-inline">
-                            <select id="role" name="role" lay-filter="listRole" lay-search>
-                                <option value="" selected>角色/组(*)</option>
+                            <select id="user-role" name="user-role" lay-filter="listUserRole" lay-search>
+                                <option value="" selected>用户/组(*)</option>
                             </select>
                         </div>
                         <div class="layui-input-inline">
@@ -44,13 +39,13 @@
                         </div>
                         <div class="layui-btn-container">
                             <button type="submit" class="layui-btn layui-btn">
-                                <i class="layui-icon layui-icon-search" style="font-size: 25px; color: whitesmoke"></i>
+                                <i class="layui-icon layui-icon-release" style="font-size: 25px; color: whitesmoke"></i>
                             </button>
                         </div>
                     </div>
                 </form>
                 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-                    <legend>匹配结果</legend>
+                    <legend>评估结果</legend>
                 </fieldset>
             </div>
         </div>
@@ -80,10 +75,10 @@
                     privileges = data.privileges;
 
                 for(var i=0; i< users.length; i++){
-                    $('#user').append(new Option(users[i].name, users[i].name))
+                    $('#user-role').append(new Option(users[i].name, users[i].name))
                 }
                 for(var i=0; i< roles.length; i++){
-                    $('#role').append(new Option(roles[i].name, roles[i].name))
+                    $('#user-role').append(new Option(roles[i].name, roles[i].name))
                 }
                 for(var i=0; i< resources.length; i++){
                     $('#resource').append(new Option(resources[i].name, resources[i].name))

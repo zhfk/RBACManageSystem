@@ -70,10 +70,6 @@
                         <div id="user-role-bind" class="layui-trans"></div>
                     </div>
                 </div>
-                <div class="layui-input-inline" style="margin-top: 15px; margin-right: 48%; float: right">
-                    <button type="reset" class="layui-btn layui-btn-primary" id="reset-all">重置</button>
-                    <button type="submit" class="layui-btn" id="submit-all">提交</button>
-                </div>
             </div>
         </div>
     </div>
@@ -153,6 +149,47 @@
                             ,value: value
                             ,title: ['候选', '已授权']
                             ,showSearch: true
+                            ,text: {
+                                none: '无数据' //没有数据时的文案
+                                ,searchNone: '无匹配数据' //搜索无匹配数据时的文案
+                            }
+                            ,id: 'user-resource-grant' //定义索引
+                            ,onchange: function(data, index){
+
+                                var user = $("#user-grant").val()
+                                var resource = $("#resource-grant").val()
+                                var grants = []
+                                for(var j=0; j< data.length; j++){
+                                    grants.push(data[j].value)
+                                }
+                                if(user!=="" && resource !== ""){
+                                    var url = ""
+                                    var msg = ""
+                                    if(index===0) {
+                                        url = "/userResource/grant"
+                                        msg = "授权"
+                                    }else {
+                                        url = "/userResource/ungrant"
+                                        msg = "取消授权"
+                                    }
+                                    $.ajax({
+                                        url: url,
+                                        type: "post",
+                                        dataType:'json',
+                                        traditional: true,
+                                        data:{
+                                            user: user,
+                                            resource: resource,
+                                            grants: grants
+                                        },
+                                        success: function (data) {
+                                            layer.msg(msg+"成功")
+                                        }
+                                    });
+                                }else{
+                                    layer.msg("请选择用户/资源")
+                                }
+                            }
                         })
                     }
                 })
@@ -193,22 +230,46 @@
                             ,value: value
                             ,title: ['候选', '已授权']
                             ,showSearch: true
+                            ,id: 'user-role-bind' //定义索引
+                            ,onchange: function(data, index){
+                                var user = $("#user-bind").val()
+                                var roles = []
+                                for(var j=0; j< data.length; j++){
+                                    roles.push(data[j].value)
+                                }
+                                if(user!==""){
+                                    var url = ""
+                                    var msg = ""
+                                    if(index===0) {
+                                        url = "/role/bind"
+                                        msg = "绑定"
+                                    }else {
+                                        url = "/role/unbind"
+                                        msg = "解绑"
+                                    }
+                                    $.ajax({
+                                        url: url,
+                                        type: "post",
+                                        dataType:'json',
+                                        traditional: true,
+                                        data:{
+                                            user: user,
+                                            roles: roles
+                                        },
+                                        success: function (data) {
+                                            layer.msg(msg+"成功")
+                                        }
+                                    });
+                                }else{
+                                    layer.msg("请选择用户")
+                                }
+                            }
                         })
                     }
                 });
                 return false;
             }
         });
-
-
-        $('#reset-all').click(function () {
-            location.reload()
-        })
-
-        $('#submit-all').click(function (data) {
-            //TODO 提交授权内容
-            layer.msg("hello")
-        })
 
     });
 </script>

@@ -3,9 +3,11 @@ package com.auth.rbac.controller;
 import com.auth.rbac.service.GrantService;
 import com.auth.rbac.service.PrivilegeService;
 import com.auth.rbac.service.RoleService;
+import org.casbin.jcasbin.main.Enforcer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,6 +27,9 @@ public class UserGrantController {
 
     @Autowired
     private GrantService grantService;
+
+    @Autowired
+    private Enforcer enforcer;
 
     @GetMapping(value = "/grant/privilege")
     @ResponseBody
@@ -50,6 +55,26 @@ public class UserGrantController {
         bindings.put("binded", binded);
         bindings.put("all", all);
         return bindings;
+    }
+
+    @PostMapping(value = "/userResource/grant")
+    @ResponseBody
+    public void userResourceGrant(@RequestParam(value = "user") String user,
+                                 @RequestParam(value = "resource") String resource,
+                                 @RequestParam(value = "grants") List<String> grants){
+        for (String grant : grants) {
+            enforcer.addPermissionForUser(user, resource, grant);
+        }
+    }
+
+    @PostMapping(value = "/userResource/ungrant")
+    @ResponseBody
+    public void userResourceUngrant(@RequestParam(value = "user") String user,
+                                  @RequestParam(value = "resource") String resource,
+                                  @RequestParam(value = "grants") List<String> grants){
+        for (String grant : grants) {
+            enforcer.deletePermissionForUser(user, resource, grant);
+        }
     }
 
 }
