@@ -2,6 +2,7 @@ package com.auth.rbac.controller;
 
 import com.auth.rbac.dao.Rtree;
 import org.casbin.jcasbin.main.Enforcer;
+import org.hibernate.hql.internal.CollectionSubqueryFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -36,6 +38,7 @@ public class RelationController {
     @GetMapping(value = "/show")
     @ResponseBody
     public Rtree relationShip(@RequestParam(value = "subject") String subject){
+        //获取用户permission
         List<List<String>> permissions = new ArrayList<>();
         try {
             permissions = enforcer.getImplicitPermissionsForUser(subject);
@@ -47,16 +50,24 @@ public class RelationController {
                 logger.warn(e1.getMessage());
             }
         }
-        if(CollectionUtils.isEmpty(permissions)) {
-            try{
-                List<String> roles = enforcer.getRolesForUser(subject);
-                for (String role : roles) {
+        //获取用户的组信息
+        List<String> roles = new ArrayList<>();
+        try{
+            roles = enforcer.getRolesForUser(subject);
+        }catch (Exception e){
+            logger.warn(e.getMessage());
+        }
+
+        //合并组和permission
+        List<String> pRoles = permissions.stream().filter( list -> !list.get(0).equals(subject)).map(list -> list.get(0)).collect(Collectors.toList());
+        if(!CollectionUtils.isEmpty(roles)){
+            for (String role : roles) {
+                if(!pRoles.contains(role)){
                     permissions.add(Collections.singletonList(role));
                 }
-            }catch (Exception e){
-                logger.warn(e.getMessage());
             }
         }
+
         Rtree root = new Rtree();
         root.setName(subject);
         root.setChildren(new ArrayList<>());

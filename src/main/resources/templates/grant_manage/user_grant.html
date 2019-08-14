@@ -115,8 +115,10 @@
 
         //监听用户绑定form 按钮
         form.on('submit(list-privilege)', function (data) {
+
             var user = data.field.user;
             var resource = data.field.resource;
+
             if(user === "" || resource === "" ){
                 layer.msg("请选择要授权的用户(角色)/资源！");
                 return false;
