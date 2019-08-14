@@ -7,12 +7,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -33,7 +36,7 @@ public class RelationController {
     @GetMapping(value = "/show")
     @ResponseBody
     public Rtree relationShip(@RequestParam(value = "subject") String subject){
-        List<List<String>> permissions = null;
+        List<List<String>> permissions = new ArrayList<>();
         try {
             permissions = enforcer.getImplicitPermissionsForUser(subject);
         }catch (Exception e){
@@ -42,6 +45,16 @@ public class RelationController {
                 permissions = enforcer.getPermissionsForUser(subject);
             }catch (Exception e1){
                 logger.warn(e1.getMessage());
+            }
+        }
+        if(CollectionUtils.isEmpty(permissions)) {
+            try{
+                List<String> roles = enforcer.getRolesForUser(subject);
+                for (String role : roles) {
+                    permissions.add(Collections.singletonList(role));
+                }
+            }catch (Exception e){
+                logger.warn(e.getMessage());
             }
         }
         Rtree root = new Rtree();
