@@ -27,4 +27,7 @@ public interface ResourceRepository extends PagingAndSortingRepository<Resource,
 
     @Query("select id as id, name as name from Resource ")
     List<Map<String, Object>> findAllName();
+
+    @Query("select name as name from Resource ")
+    List<String> findNames();
 }

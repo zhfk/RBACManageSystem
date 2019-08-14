@@ -24,4 +24,6 @@ public interface ResourceService {
     Page<Resource> findBynameLike(Integer page, Integer limit, String username);
 
     List<Map<String, Object>> getAllname();
+
+    List<String> getNames();
 }

@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequestMapping(value = "/api/v1/role")
 public class RoleController {
 
     @Autowired
@@ -21,7 +22,7 @@ public class RoleController {
     @Autowired
     private Enforcer enforcer;
 
-    @PostMapping(value = "/role/add")
+    @PostMapping(value = "/add")
     @ResponseBody
     public String addRole(@RequestParam(value = "name") String name,
                            @RequestParam(value = "desc") String desc){
@@ -37,7 +38,7 @@ public class RoleController {
         }
     }
 
-    @PostMapping(value = "/role/modify")
+    @PostMapping(value = "/modify")
     @ResponseBody
     public String modifyRole(@RequestParam(value = "id") Integer id,
                           @RequestParam(value = "name") String name,
@@ -54,7 +55,7 @@ public class RoleController {
         }
     }
 
-    @GetMapping(value = "/role/getPageRole")
+    @GetMapping(value = "/getPageRole")
     @ResponseBody
     public ResponseData getPageRole(@RequestParam(value = "page") Integer page,
                                          @RequestParam(value = "limit") Integer limit){
@@ -62,7 +63,7 @@ public class RoleController {
         return new ResponseData<>(0, "succeed", Roles.getTotalElements(), Roles.getContent());
     }
 
-    @GetMapping(value = "/role/search")
+    @GetMapping(value = "/search")
     @ResponseBody
     public ResponseData search(@RequestParam(value = "page") Integer page,
                                @RequestParam(value = "limit") Integer limit,
@@ -71,19 +72,19 @@ public class RoleController {
         return new ResponseData<>(0, "succeed", roles.getTotalElements(), roles.getContent());
     }
 
-    @DeleteMapping(value = "/role/delete")
+    @DeleteMapping(value = "/delete")
     @ResponseBody
     public void deleteRole(@RequestParam(value = "id") Integer id){
         roleService.deleteRole(id);
     }
 
-    @DeleteMapping(value = "/role/batchDelete")
+    @DeleteMapping(value = "/batchDelete")
     @ResponseBody
     public void deleteRoles(@RequestParam(value = "id") String idList){
         roleService.deleteRoles(idList);
     }
 
-    @PostMapping(value = "/role/bind")
+    @PostMapping(value = "/bind")
     @ResponseBody
     public void bind(@RequestParam(value = "user") String user,
                      @RequestParam(value = "roles") List<String> roles){
@@ -92,7 +93,7 @@ public class RoleController {
         }
     }
 
-    @PostMapping(value = "/role/unbind")
+    @PostMapping(value = "/unbind")
     @ResponseBody
     public void unbind(@RequestParam(value = "user") String user,
                      @RequestParam(value = "roles") List<String> roles){

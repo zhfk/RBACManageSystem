@@ -15,13 +15,15 @@ public interface PrivilegeService {
 
     void deletePrivileges(String idListStr);
 
-    Optional<Privilege> getPrivilegeByname(String name);
+    Optional<Privilege> getPrivilegeBynameAndResource(String resource, String name);
 
     Privilege getPrivilegeById(Integer id);
 
     Page<Privilege> getPrivilegeByPage(Integer page, Integer limit);
 
     Page<Privilege> findBynameLike(Integer page, Integer limit, String username);
+
+    List<Map<String, Object>> getAllname(String resource);
 
     List<Map<String, Object>> getAllname();
 }

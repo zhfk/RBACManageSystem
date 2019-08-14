@@ -6,10 +6,7 @@ import com.auth.rbac.service.RoleService;
 import org.casbin.jcasbin.main.Enforcer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,7 +14,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
-public class UserGrantController {
+@RequestMapping(value = "/api/v1/grant")
+public class GrantController {
 
     @Autowired
     private PrivilegeService privilegeService;
@@ -31,21 +29,26 @@ public class UserGrantController {
     @Autowired
     private Enforcer enforcer;
 
-    @GetMapping(value = "/grant/privilege")
+    @GetMapping(value = {"/",""})
+    public String grantUser(){
+        return "grant_manage/user_grant";
+    }
+
+    @GetMapping(value = "/privilege")
     @ResponseBody
     public Map<String, List<String>> userResourceGrant(@RequestParam(value = "user") String user,
                                                        @RequestParam(value = "resource") String resource){
         Map<String, List<String>> privilege = new HashMap<>();
         List<List<String>> permissions = grantService.getPermission(user, resource);
         List<String> granted = permissions.stream().map(p -> p.get(2)).collect(Collectors.toList());
-        List<Map<String, Object>> privilegs = privilegeService.getAllname();
+        List<Map<String, Object>> privilegs = privilegeService.getAllname(resource);
         List<String> all = privilegs.stream().map(p -> (String)p.get("name")).collect(Collectors.toList());
         privilege.put("granted", granted);
         privilege.put("all", all);
         return privilege;
     }
 
-    @GetMapping(value = "/grant/role")
+    @GetMapping(value = "/role")
     @ResponseBody
     public Map<String, List<String>> userRoleGrant(@RequestParam(value = "user") String user){
         Map<String, List<String>> bindings = new HashMap<>();
@@ -57,7 +60,7 @@ public class UserGrantController {
         return bindings;
     }
 
-    @PostMapping(value = "/userResource/grant")
+    @PostMapping(value = "/apply")
     @ResponseBody
     public void userResourceGrant(@RequestParam(value = "user") String user,
                                  @RequestParam(value = "resource") String resource,
@@ -67,9 +70,9 @@ public class UserGrantController {
         }
     }
 
-    @PostMapping(value = "/userResource/ungrant")
+    @PostMapping(value = "/revoke")
     @ResponseBody
-    public void userResourceUngrant(@RequestParam(value = "user") String user,
+    public void userResourceRevoke(@RequestParam(value = "user") String user,
                                   @RequestParam(value = "resource") String resource,
                                   @RequestParam(value = "grants") List<String> grants){
         for (String grant : grants) {

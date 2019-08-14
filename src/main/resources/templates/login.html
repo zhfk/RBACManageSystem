@@ -8,7 +8,7 @@
 </head>
 <body>
     <div id="login" class="layui-main">
-        <form class="layui-form" th:action="@{/}">
+        <form class="layui-form" th:action="@{/login}" method="post">
             <div class="layui-form-item">
                 <div class="layui-input-block">
                     <div class="layui-logo">
@@ -20,18 +20,25 @@
             </div>
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <input type="text" name="username" autocomplete="off" placeholder="请输入用户名" class="layui-input">
+                    <input type="text" name="username" autocomplete="off" placeholder="请输入用户名" class="layui-input" lay-verify="username" required>
                 </div>
             </div>
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <input type="password" name="password" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                    <input type="password" name="password" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入密码" autocomplete="off" class="layui-input" lay-verify="password" required>
                 </div>
             </div>
             <div class="layui-form-item">
                 <div class="layui-input-block">
                     <button class="layui-btn" lay-submit="" lay-filter="submit">立即提交</button>
                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+            <div class="layui-form-item" th:if="${param.error}">
+                <div class="layui-input-block">
+                    <blockquote class="layui-elem-quote layui-text">
+                        <span th:text="用户名或密码输入错误！" style="color: red"></span>
+                    </blockquote>
                 </div>
             </div>
         </form>
@@ -42,6 +49,32 @@
     layui.use(['element', 'form'], function() {
         var element = layui.element,
             form = layui.form;
+
+        form.on('submit(*)',function (data) {
+            console.log(data.username+", 开始登陆...")
+        })
+
+        form.verify({
+            username: function(value, item){ //value：表单的值、item：表单的DOM对象
+                if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+                    return '用户名不能有特殊字符';
+                }
+                if(/(^\_)|(\__)|(\_+$)/.test(value)){
+                    return '用户名首尾不能出现下划线\'_\'';
+                }
+                if(/^\d+\d+\d$/.test(value)){
+                    return '用户名不能全为数字';
+                }
+            }
+
+            //我们既支持上述函数式的方式，也支持下述数组的形式
+            //数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
+            ,password: [
+                /^[\S]{6,20}$/
+                ,'密码必须6到20位，且不能出现空格'
+            ]
+        });
+
     });
 </script>
 </body>

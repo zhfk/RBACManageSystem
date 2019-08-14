@@ -5,12 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value = "/api/v1/index")
-public class IndexController {
-
-    @GetMapping(value = {"/", ""})
-    public String index(){
-        return "index";
+@RequestMapping(value = "/api/v1/log")
+public class LogController {
+    @GetMapping(value = {"/",""})
+    public String log(){
+        return "log/audit";
     }
-
 }

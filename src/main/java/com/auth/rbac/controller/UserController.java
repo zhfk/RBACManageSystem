@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
+@RequestMapping(value = "/api/v1/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @PostMapping(value = "/user/add")
+    @PostMapping(value = "/add")
     @ResponseBody
     public String addUser(@RequestParam(value = "username") String username,
                            @RequestParam(value = "organization") String organization,
@@ -38,7 +39,7 @@ public class UserController {
         }
     }
 
-    @PostMapping(value = "/user/modify")
+    @PostMapping(value = "/modify")
     @ResponseBody
     public String modifyUser(@RequestParam(value = "id") Integer id,
                           @RequestParam(value = "username") String username,
@@ -61,7 +62,7 @@ public class UserController {
         }
     }
 
-    @GetMapping(value = "/user/getPageUser")
+    @GetMapping(value = "/getPageUser")
     @ResponseBody
     public ResponseData getPageUser(@RequestParam(value = "page") Integer page,
                                          @RequestParam(value = "limit") Integer limit){
@@ -69,7 +70,7 @@ public class UserController {
         return new ResponseData<>(0, "succeed", users.getTotalElements(), users.getContent());
     }
 
-    @GetMapping(value = "/user/search")
+    @GetMapping(value = "/search")
     @ResponseBody
     public ResponseData search(@RequestParam(value = "page") Integer page,
                                @RequestParam(value = "limit") Integer limit,
@@ -78,13 +79,13 @@ public class UserController {
         return new ResponseData<>(0, "succeed", users.getTotalElements(), users.getContent());
     }
 
-    @DeleteMapping(value = "/user/delete")
+    @DeleteMapping(value = "/delete")
     @ResponseBody
     public void deleteUser(@RequestParam(value = "id") Integer id){
         userService.deleteUser(id);
     }
 
-    @DeleteMapping(value = "/user/batchDelete")
+    @DeleteMapping(value = "/batchDelete")
     @ResponseBody
     public void deleteUsers(@RequestParam(value = "id") String idList){
         userService.deleteUsers(idList);

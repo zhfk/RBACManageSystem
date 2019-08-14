@@ -17,6 +17,10 @@ public class Privilege {
     @Column(name = "`name`")
     private String name;
 
+    @NotNull
+    @Column(name = "`resource`")
+    private String resource;
+
     @Column(name = "`desc`")
     private String desc;
 }

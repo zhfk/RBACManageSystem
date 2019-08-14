@@ -11,20 +11,23 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
+@RequestMapping(value = "/api/v1/privilege")
 public class PrivilegeController {
 
     @Autowired
     private PrivilegeService privilegeService;
 
-    @PostMapping(value = "/privilege/add")
+    @PostMapping(value = "/add")
     @ResponseBody
-    public String addPrivilege(@RequestParam(value = "name") String name,
-                              @RequestParam(value = "desc") String desc){
-        Optional<Privilege> opPrivilege = privilegeService.getPrivilegeByname(name);
+    public String addPrivilege(@RequestParam(value = "resource") String resource,
+                               @RequestParam(value = "name") String name,
+                               @RequestParam(value = "desc") String desc){
+        Optional<Privilege> opPrivilege = privilegeService.getPrivilegeBynameAndResource(resource, name);
         if(opPrivilege.isPresent()){
             return opPrivilege.get().getName()+" 已经存在了!";
         }else{
             Privilege privilege = new Privilege();
+            privilege.setResource(resource);
             privilege.setName(name);
             privilege.setDesc(desc);
             privilegeService.addPrivilege(privilege);
@@ -32,16 +35,18 @@ public class PrivilegeController {
         }
     }
 
-    @PostMapping(value = "/privilege/modify")
+    @PostMapping(value = "/modify")
     @ResponseBody
     public String modifyPrivilege(@RequestParam(value = "id") Integer id,
+                                  @RequestParam(value = "resource") String resource,
                                  @RequestParam(value = "name") String name,
                                  @RequestParam(value = "desc") String desc){
-        Optional<Privilege> opPrivilege = privilegeService.getPrivilegeByname(name);
+        Optional<Privilege> opPrivilege = privilegeService.getPrivilegeBynameAndResource(resource, name);
         if(opPrivilege.isPresent() && !opPrivilege.get().getId().equals(id)){
             return opPrivilege.get().getName()+" 已经存在了!";
         }else{
             Privilege Privilege = privilegeService.getPrivilegeById(id);
+            Privilege.setResource(resource);
             Privilege.setName(name);
             Privilege.setDesc(desc);
             privilegeService.addPrivilege(Privilege);
@@ -49,7 +54,7 @@ public class PrivilegeController {
         }
     }
 
-    @GetMapping(value = "/privilege/getPagePrivilege")
+    @GetMapping(value = "/getPagePrivilege")
     @ResponseBody
     public ResponseData getPagePrivilege(@RequestParam(value = "page") Integer page,
                                         @RequestParam(value = "limit") Integer limit){
@@ -57,7 +62,7 @@ public class PrivilegeController {
         return new ResponseData<>(0, "succeed", Privileges.getTotalElements(), Privileges.getContent());
     }
 
-    @GetMapping(value = "/privilege/search")
+    @GetMapping(value = "/search")
     @ResponseBody
     public ResponseData search(@RequestParam(value = "page") Integer page,
                                @RequestParam(value = "limit") Integer limit,
@@ -66,13 +71,13 @@ public class PrivilegeController {
         return new ResponseData<>(0, "succeed", privileges.getTotalElements(), privileges.getContent());
     }
 
-    @DeleteMapping(value = "/privilege/delete")
+    @DeleteMapping(value = "/delete")
     @ResponseBody
     public void deletePrivilege(@RequestParam(value = "id") Integer id){
         privilegeService.deletePrivilege(id);
     }
 
-    @DeleteMapping(value = "/privilege/batchDelete")
+    @DeleteMapping(value = "/batchDelete")
     @ResponseBody
     public void deletePrivileges(@RequestParam(value = "id") String idList){
         privilegeService.deletePrivileges(idList);

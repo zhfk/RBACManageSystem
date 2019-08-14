@@ -1,0 +1,1 @@
+insert into `casbin`.`admin` ( `aphorism`, `birthday`, `for_spare_time`, `gender`, `hobby`, `password`, `personal_description`, `username`, `native_place`, `roles`) values ( '别和我谈梦想，我的梦想就每天收租 ...', '2002-03-07', '逛B站、刷抖音、阅读、快手、游戏、美剧、写作', '女', '凉皮、沙拉、柠檬茶、盘喵', '$2a$10$sgWm7ElfIic7mW2caupaae8vAhz6OIyn1y6N1a71YFim80W5s2weG', '每个人都只有一种命运', 'admin', '上海市/上海市/长宁区', 'ADMIN');

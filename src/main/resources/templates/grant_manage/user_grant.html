@@ -50,7 +50,7 @@
                         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
                             <legend>用户-角色绑定</legend>
                         </fieldset>
-                        <form class="layui-form" th:action="@{/bind/user}" th:method="post">
+                        <form class="layui-form" th:action="@{/api/v1/bind/user}" th:method="post">
                             <div class="layui-form-item">
                                 <div class="layui-input-inline">
                                     <select id="user-bind" name="user" lay-filter="listUser" lay-search>
@@ -87,7 +87,7 @@
             util = layui.util;
 
         $.ajax({
-            url:"/search/subList",
+            url:"/api/v1/search/subList",
             type: "get",
             dataType: 'json',
             data:{
@@ -122,7 +122,7 @@
                 return false;
             }else{
                 $.ajax({
-                    url: "/grant/privilege",
+                    url: "/api/v1/grant/privilege",
                     type: "get",
                     dataType:'json',
                     data:{
@@ -166,10 +166,10 @@
                                     var url = ""
                                     var msg = ""
                                     if(index===0) {
-                                        url = "/userResource/grant"
+                                        url = "/api/v1/grant/apply"
                                         msg = "授权"
                                     }else {
-                                        url = "/userResource/ungrant"
+                                        url = "/api/v1/grant/revoke"
                                         msg = "取消授权"
                                     }
                                     $.ajax({
@@ -204,7 +204,7 @@
                 return false;
             }else {
                 $.ajax({
-                    url: "/grant/role",
+                    url: "/api/v1/grant/role",
                     type: "get",
                     dataType:'json',
                     data:{
@@ -241,10 +241,10 @@
                                     var url = ""
                                     var msg = ""
                                     if(index===0) {
-                                        url = "/role/bind"
+                                        url = "/api/v1/role/bind"
                                         msg = "绑定"
                                     }else {
-                                        url = "/role/unbind"
+                                        url = "/api/v1/role/unbind"
                                         msg = "解绑"
                                     }
                                     $.ajax({

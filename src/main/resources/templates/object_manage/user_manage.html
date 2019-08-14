@@ -65,7 +65,7 @@
 
         table.render({
             elem: '#user-list',
-            url: '/user/getPageUser',
+            url: '/api/v1/user/getPageUser',
             id:'tableReload',
             toolbar: false,
             title: true,
@@ -106,7 +106,7 @@
                     shadeClose: true, //点击遮罩关闭层
                     title: "修改用户信息",
                     area : ['800px' , '550px'],
-                    content: '/manage/user/info?userId='+data.id,
+                    content: '/api/v1/manage/user/info?userId='+data.id,
                     btn: ['确认'],
                     yes: function (index, layero) {
                         var input = layer.getChildFrame('input', index);
@@ -134,7 +134,7 @@
                         var gender = getGender(getGender(gender_male,gender_female),gender_unkonw)
 
                         $.ajax({
-                            url:"/user/modify",
+                            url:"/api/v1/user/modify",
                             type:'post',
                             data:{
                                 id: data.id,
@@ -158,7 +158,7 @@
                                     }, function(){
                                         //执行重载
                                         table.reload('tableReload', {
-                                            url: '/user/getPageUser',
+                                            url: '/api/v1/user/getPageUser',
                                             page: {
                                                 curr: 1 //重新从第 1 页开始
                                             }
@@ -177,7 +177,7 @@
                 layer.confirm('真的要删除'+data.username+'吗？', function(index){
                     obj.del();
                     $.ajax({
-                        url:"/user/delete",
+                        url:"/api/v1/user/delete",
                         type:'delete',
                         data:{
                             id: data.id
@@ -196,7 +196,7 @@
                                 });
                                 //执行重载
                                 table.reload('tableReload', {
-                                    url: '/user/getPageUser',
+                                    url: '/api/v1/user/getPageUser',
                                     page: {
                                         curr: 1 //重新从第 1 页开始
                                     }
@@ -216,7 +216,7 @@
                     maxmin: true,
                     shadeClose: true, //点击遮罩关闭层
                     area : ['800px' , '520px'],
-                    content: '/manage/relation/user?userId='+data.id
+                    content: '/api/v1/manage/relation/user?userId='+data.id
                 });
             }
         });
@@ -227,7 +227,7 @@
 
                 //执行重载
                 table.reload('tableReload', {
-                    url: '/user/search',
+                    url: '/api/v1/user/search',
                     page: {
                         curr: 1 //重新从第 1 页开始
                     }
@@ -250,7 +250,7 @@
                                 id.push(data[i].id)
                             }
                             $.ajax({
-                                url:"/user/batchDelete",
+                                url:"/api/v1/user/batchDelete",
                                 type:'delete',
                                 data:{
                                     id: id.join(",")
@@ -270,7 +270,7 @@
                                         });
                                         //执行重载
                                         table.reload('tableReload', {
-                                            url: '/user/getPageUser',
+                                            url: '/api/v1/user/getPageUser',
                                             page: {
                                                 curr: 1 //重新从第 1 页开始
                                             }
@@ -301,7 +301,7 @@
                     shadeClose: true, //点击遮罩关闭层
                     title: "添加用户",
                     area : ['800px' , '550px'],
-                    content: '/manage/add/user',
+                    content: '/api/v1/manage/add/user',
                     btn: ['确认'],
                     yes: function (index, layero) {
                         var input = layer.getChildFrame('input', index);
@@ -329,7 +329,7 @@
                         var gender = getGender(getGender(gender_male,gender_female),gender_unkonw)
 
                         $.ajax({
-                            url:"/user/add",
+                            url:"/api/v1/user/add",
                             type:'post',
                             data:{
                                 username: username,
@@ -352,7 +352,7 @@
                                     }, function(){
                                         //执行重载
                                         table.reload('tableReload', {
-                                            url: '/user/getPageUser',
+                                            url: '/api/v1/user/getPageUser',
                                             page: {
                                                 curr: 1 //重新从第 1 页开始
                                             }
@@ -371,7 +371,7 @@
             ,refresh: function(){
                 //执行重载
                 table.reload('tableReload', {
-                    url: '/user/getPageUser',
+                    url: '/api/v1/user/getPageUser',
                     page: {
                         curr: 1 //重新从第 1 页开始
                     }

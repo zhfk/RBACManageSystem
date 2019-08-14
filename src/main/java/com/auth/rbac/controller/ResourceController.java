@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
+@RequestMapping(value = "/api/v1/resource")
 public class ResourceController {
 
     @Autowired
     private ResourceService resourceService;
 
-    @PostMapping(value = "/resource/add")
+    @PostMapping(value = "/add")
     @ResponseBody
     public String addResource(@RequestParam(value = "name") String name,
                            @RequestParam(value = "desc") String desc){
@@ -32,7 +33,7 @@ public class ResourceController {
         }
     }
 
-    @PostMapping(value = "/resource/modify")
+    @PostMapping(value = "/modify")
     @ResponseBody
     public String modifyResource(@RequestParam(value = "id") Integer id,
                           @RequestParam(value = "name") String name,
@@ -49,7 +50,7 @@ public class ResourceController {
         }
     }
 
-    @GetMapping(value = "/resource/getPageResource")
+    @GetMapping(value = "/getPageResource")
     @ResponseBody
     public ResponseData getPageResource(@RequestParam(value = "page") Integer page,
                                          @RequestParam(value = "limit") Integer limit){
@@ -57,7 +58,7 @@ public class ResourceController {
         return new ResponseData<>(0, "succeed", Resources.getTotalElements(), Resources.getContent());
     }
 
-    @GetMapping(value = "/resource/search")
+    @GetMapping(value = "/search")
     @ResponseBody
     public ResponseData search(@RequestParam(value = "page") Integer page,
                                @RequestParam(value = "limit") Integer limit,
@@ -66,13 +67,13 @@ public class ResourceController {
         return new ResponseData<>(0, "succeed", resources.getTotalElements(), resources.getContent());
     }
 
-    @DeleteMapping(value = "/resource/delete")
+    @DeleteMapping(value = "/delete")
     @ResponseBody
     public void deleteResource(@RequestParam(value = "id") Integer id){
         resourceService.deleteResource(id);
     }
 
-    @DeleteMapping(value = "/resource/batchDelete")
+    @DeleteMapping(value = "/batchDelete")
     @ResponseBody
     public void deleteResources(@RequestParam(value = "id") String idList){
         resourceService.deleteResources(idList);

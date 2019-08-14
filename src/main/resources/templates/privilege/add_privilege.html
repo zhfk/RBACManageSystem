@@ -20,6 +20,16 @@
                     </div>
                     <div class="layui-text" style="color: red; font-size: medium"><strong>*</strong></div>
                 </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">所属资源</label>
+                    <div class="layui-input-inline">
+                        <select id="resource" name="resource" lay-filter="listResource" lay-search>
+                            <option value="" selected>资源(*)</option>
+                            <option th:each="resource:${resources}" th:value="${resource}" th:text="${resource}">
+                        </select>
+                    </div>
+                    <div class="layui-text" style="color: red; font-size: medium"><strong>*</strong></div>
+                </div>
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">备注</label>
                     <div class="layui-input-block">

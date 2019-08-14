@@ -61,7 +61,7 @@
 
         table.render({
             elem: '#subject-table',
-            url: '/resource/getPageResource',
+            url: '/api/v1/resource/getPageResource',
             id:'tableReload',
             toolbar: false,
             title: true,
@@ -87,13 +87,13 @@
                     shadeClose: true, //点击遮罩关闭层
                     title: "修改资源信息",
                     area : ['800px' , '350px'],
-                    content: '/manage/resource/info?id='+data.id,
+                    content: '/api/v1/manage/resource/info?id='+data.id,
                     btn: ['确认'],
                     yes: function (index, layero) {
                         var input = layer.getChildFrame('input', index);
                         var name = input[0].value;
-                        var desc = layer.getChildFrame('textarea', index);
-
+                        var textarea = layer.getChildFrame('textarea', index);
+                        var desc = textarea[0].value
                         if(name === "") {
                             //配置一个透明的询问框
                             layer.msg('必填项不能为空', {
@@ -104,12 +104,12 @@
                         }
 
                         $.ajax({
-                            url:"/resource/modify",
+                            url:"/api/v1/resource/modify",
                             type:'post',
                             data:{
                                 id: data.id,
                                 name: name,
-                                desc: desc[0].value
+                                desc: desc
                             },
                             success:function(data){
                                 if(data.status === 'error'){
@@ -125,7 +125,7 @@
                                     }, function(){
                                         //执行重载
                                         table.reload('tableReload', {
-                                            url: '/resource/getPageResource',
+                                            url: '/api/v1/resource/getPageResource',
                                             page: {
                                                 curr: 1 //重新从第 1 页开始
                                             }
@@ -144,7 +144,7 @@
                 layer.confirm('真的要删除'+data.name+'吗？', function(index){
                     obj.del();
                     $.ajax({
-                        url:"/resource/delete",
+                        url:"/api/v1/resource/delete",
                         type:'delete',
                         data:{
                             id: data.id
@@ -163,7 +163,7 @@
                                 });
                                 //执行重载
                                 table.reload('tableReload', {
-                                    url: '/resource/getPageResource',
+                                    url: '/api/v1/resource/getPageResource',
                                     page: {
                                         curr: 1 //重新从第 1 页开始
                                     }
@@ -186,7 +186,7 @@
 
                 //执行重载
                 table.reload('tableReload', {
-                    url: '/resource/search',
+                    url: '/api/v1/resource/search',
                     page: {
                         curr: 1 //重新从第 1 页开始
                     }
@@ -209,7 +209,7 @@
                                 id.push(data[i].id)
                             }
                             $.ajax({
-                                url:"/resource/batchDelete",
+                                url:"/api/v1/resource/batchDelete",
                                 type:'delete',
                                 data:{
                                     id: id.join(",")
@@ -229,7 +229,7 @@
                                         });
                                         //执行重载
                                         table.reload('tableReload', {
-                                            url: '/resource/getPageResource',
+                                            url: '/api/v1/resource/getPageResource',
                                             page: {
                                                 curr: 1 //重新从第 1 页开始
                                             }
@@ -260,7 +260,7 @@
                     shadeClose: true, //点击遮罩关闭层
                     title: "添加资源",
                     area : ['800px' , '350px'],
-                    content: '/manage/add/resource',
+                    content: '/api/v1/manage/add/resource',
                     btn: ['确认'],
                     yes: function (index, layero) {
                         var input = layer.getChildFrame('input', index);
@@ -277,7 +277,7 @@
                         }
 
                         $.ajax({
-                            url:"/resource/add",
+                            url:"/api/v1/resource/add",
                             type:'post',
                             data:{
                                 name: name,
@@ -297,7 +297,7 @@
                                     }, function(){
                                         //执行重载
                                         table.reload('tableReload', {
-                                            url: '/resource/getPageResource',
+                                            url: '/api/v1/resource/getPageResource',
                                             page: {
                                                 curr: 1 //重新从第 1 页开始
                                             }
@@ -316,7 +316,7 @@
             ,refresh: function(){
                 //执行重载
                 table.reload('tableReload', {
-                    url: '/resource/getPageResource',
+                    url: '/api/v1/resource/getPageResource',
                     page: {
                         curr: 1 //重新从第 1 页开始
                     }

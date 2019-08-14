@@ -1,18 +1,18 @@
 package com.auth.rbac.controller;
 
-import io.swagger.annotations.Api;
 import org.casbin.exception.CasbinAdapterException;
 import org.casbin.jcasbin.main.Enforcer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Api("swagger ui 注释 enforcer")
-@RestController
+@Controller
+@RequestMapping("/api/v1/enforce")
 public class EnforcerController {
 
     private static final Logger logger = LoggerFactory.getLogger(EnforcerController.class);
@@ -20,14 +20,14 @@ public class EnforcerController {
     @Autowired
     private Enforcer enforcer;
 
-    @GetMapping(value = "/enforce")
+    @GetMapping(value = {"/",""})
     public Boolean enforce(@RequestParam(name = "sub") String sub,
                            @RequestParam(name = "obj") String obj,
                            @RequestParam(name = "act") String act){
         return enforcer.enforce(sub, obj, act);
     }
 
-    @PostMapping(value = "/policy/add")
+    @PostMapping(value = "/add")
     public Boolean addPolicy(
             @RequestParam(name = "sub") String sub,
             @RequestParam(name = "obj") String obj,
@@ -41,7 +41,7 @@ public class EnforcerController {
         return enforcer.addGroupingPolicy(sub, group);
     }
 
-    @GetMapping(value = "/policy/getAll")
+    @GetMapping(value = "/getAll")
     public List<List<String>> getAllPolicy(){
         return enforcer.getPolicy();
     }
@@ -67,7 +67,7 @@ public class EnforcerController {
         return res;
     }
 
-    @DeleteMapping(value = "/policy/delete")
+    @DeleteMapping(value = "/delete")
     public boolean removePolicy(@RequestParam(name = "sub") String sub,
                                 @RequestParam(name = "obj") String obj,
                                 @RequestParam(name = "act") String act){

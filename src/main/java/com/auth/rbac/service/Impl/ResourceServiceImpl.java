@@ -79,4 +79,9 @@ public class ResourceServiceImpl implements ResourceService {
     public List<Map<String, Object>> getAllname() {
         return resourceRepository.findAllName();
     }
+
+    @Override
+    public List<String> getNames() {
+        return resourceRepository.findNames();
+    }
 }

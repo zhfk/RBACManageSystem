@@ -10,24 +10,24 @@
         <div class="layui-header header header-demo" summer>
             <div class="layui-main">
                 <div class="layui-logo">
-                    <a th:href="@{/}">
+                    <a th:href="@{/api/v1/index/}">
                         <i class="layui-icon layui-icon-auz" style="font-size: 25px;">RBAC Manager</i>
                     </a>
                 </div>
                 <!-- 头部区域（可配合layui已有的水平导航） -->
                 <ul class="layui-nav layui-layout-left">
                     <li class="layui-nav-item">
-                        <a th:href="@{/relation}">
+                        <a th:href="@{/api/v1/relation/}">
                             <i class="layui-icon layui-icon-chart">&nbsp;关系展示</i>
                         </a>
                     </li>
                     <li class="layui-nav-item">
-                        <a th:href="@{/search}">
+                        <a th:href="@{/api/v1/search/}">
                             <i class="layui-icon layui-icon-release">&nbsp;权限评估</i>
                         </a>
                     </li>
                     <li class="layui-nav-item">
-                        <a th:href="@{/log}">
+                        <a th:href="@{/api/v1/log/}">
                             <i class="layui-icon layui-icon-list">&nbsp;日志</i>
                         </a>
                     </li>
@@ -37,7 +37,7 @@
                         </a>
                         <dl class="layui-nav-child">
                             <dd><a href="https://github.com/zhfk/RBACManageSystem" target="_blank">帮助</a></dd>
-                            <dd><a th:href="@{/about}">关于</a></dd>
+                            <dd><a th:href="@{/api/v1/about/}">关于</a></dd>
                         </dl>
                     </li>
                 </ul>
@@ -46,10 +46,10 @@
                         <a href="javascript:;"><i class="layui-icon layui-icon-username" style="font-size: 20px;">Administrator</i></a>
                         <dl class="layui-nav-child">
                             <dd>
-                                <a th:href="@{/admin/info}">个人信息</a>
+                                <a th:href="@{/api/v1/admin/info}">个人信息</a>
                             </dd>
                             <dd>
-                                <a th:href="@{/login}">退出登陆</a>
+                                <a th:href="@{/logout}">退出登陆</a>
                             </dd>
                         </dl>
                     </li>

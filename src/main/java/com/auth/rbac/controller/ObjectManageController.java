@@ -8,15 +8,17 @@ import com.auth.rbac.service.PrivilegeService;
 import com.auth.rbac.service.ResourceService;
 import com.auth.rbac.service.RoleService;
 import com.auth.rbac.service.UserService;
-import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@Api("swagger ui 注释 用户管理")
+import java.util.List;
+
 @Controller
+@RequestMapping(value = "/api/v1/manage")
 public class ObjectManageController {
 
     @Autowired
@@ -37,23 +39,23 @@ public class ObjectManageController {
      *
      * @return
      */
-    @GetMapping(value = "/manage/user")
+    @GetMapping(value = "/user")
     public String userManage() {
         return "object_manage/user_manage";
     }
 
-    @GetMapping(value = "/manage/relation/user")
+    @GetMapping(value = "/relation/user")
     public String manageRelationUser(@RequestParam(value = "userId") String userId, ModelMap modelMap) {
         modelMap.addAttribute("userId", userId);
         return "relation/user_relation_iframe";
     }
 
-    @GetMapping(value = "/manage/add/user")
+    @GetMapping(value = "/add/user")
     public String manageAddUser() {
         return "user/add_user";
     }
 
-    @GetMapping(value = "/manage/user/info")
+    @GetMapping(value = "/user/info")
     public String manageUserInfo(@RequestParam(value = "userId") Integer userId, ModelMap modelMap) {
         User user = userService.getUserById(userId);
         modelMap.addAttribute("user", user);
@@ -65,17 +67,17 @@ public class ObjectManageController {
      *
      * @return
      */
-    @GetMapping(value = "/manage/role")
+    @GetMapping(value = "/role")
     public String roleManage() {
         return "object_manage/role_manage";
     }
 
-    @GetMapping(value = "/manage/add/role")
+    @GetMapping(value = "/add/role")
     public String manageAddRole() {
         return "role/add_role";
     }
 
-    @GetMapping(value = "/manage/role/info")
+    @GetMapping(value = "/role/info")
     public String manageRoleInfo(@RequestParam(value = "id") int id, ModelMap modelMap) {
         Role role = roleService.getRoleById(id);
         modelMap.addAttribute("role", role);
@@ -85,17 +87,17 @@ public class ObjectManageController {
     /**
      * resource
      */
-    @GetMapping(value = "/manage/resource")
+    @GetMapping(value = "/resource")
     public String resourceManage() {
         return "object_manage/resource_manage";
     }
 
-    @GetMapping(value = "/manage/add/resource")
+    @GetMapping(value = "/add/resource")
     public String manageAddResource() {
         return "resource/add_resource";
     }
 
-    @GetMapping(value = "/manage/resource/info")
+    @GetMapping(value = "/resource/info")
     public String manageResourceInfo(@RequestParam(value = "id") int id, ModelMap modelMap) {
         Resource resource = resourceService.getResourceById(id);
         modelMap.addAttribute("resource", resource);
@@ -105,20 +107,25 @@ public class ObjectManageController {
     /**
      * privilege
      */
-    @GetMapping(value = "/manage/privilege")
+    @GetMapping(value = "/privilege")
     public String privilegeManage() {
         return "object_manage/privilege_manage";
     }
 
-    @GetMapping(value = "/manage/add/privilege")
-    public String manageAddPrivilege() {
+    @GetMapping(value = "/add/privilege")
+    public String manageAddPrivilege(ModelMap modelMap) {
+        List<String> resources = resourceService.getNames();
+        modelMap.addAttribute("resources", resources);
         return "privilege/add_privilege";
     }
 
-    @GetMapping(value = "/manage/privilege/info")
+    @GetMapping(value = "/privilege/info")
     public String managePrivilegeInfo(@RequestParam(value = "id") int id, ModelMap modelMap) {
         Privilege privilege = privilegeService.getPrivilegeById(id);
+        List<String> resources = resourceService.getNames();
         modelMap.addAttribute("privilege", privilege);
+        modelMap.addAttribute("resources", resources);
+        modelMap.addAttribute("curres", privilege.getResource());
         return "privilege/privilege_info";
     }
 

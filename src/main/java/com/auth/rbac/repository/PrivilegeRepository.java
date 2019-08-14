@@ -20,11 +20,15 @@ public interface PrivilegeRepository extends PagingAndSortingRepository<Privileg
 
     @Transactional
     @Modifying
-    @Query("delete from Privilege where id in (:idList)")
+    @Query(value = "delete from Privilege where id in (:idList)", nativeQuery = true)
     void deletePrivileges(@Param(value = "idList") List<Integer> idList);
 
-    Optional<Privilege> findPrivilegeByName(@NotNull String name);
+    @Query(value = "select id as id, `name` as `name`, resource as resource, `desc` as `desc` from Privilege where resource=:resource and `name`=:name ", nativeQuery = true)
+    Optional<Privilege> findPrivilegeByNameAndResource(@Param(value = "resource") String resource, @Param(value = "name") String name);
 
-    @Query("select id as id, name as name from Privilege ")
+    @Query(value = "select id as id, name as name from Privilege where resource=:resource", nativeQuery = true)
+    List<Map<String, Object>> findAllName(@Param(value = "resource") String resource);
+
+    @Query(value = "select id as id, name as name from Privilege ", nativeQuery = true)
     List<Map<String, Object>> findAllName();
 }

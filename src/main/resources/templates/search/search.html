@@ -20,10 +20,11 @@
                 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
                     <legend>对象选择</legend>
                 </fieldset>
-                <form class="layui-form" th:action="@{/search/policy}">
+<!--                <form class="layui-form" th:action="@{/search/policy}">-->
+                <form class="layui-form">
                     <div class="layui-form-item">
                         <div class="layui-input-inline">
-                            <select id="user-role" name="user-role" lay-filter="listUserRole" lay-search>
+                            <select id="subject" name="subject" lay-filter="listUserRole" lay-search>
                                 <option value="" selected>用户/组(*)</option>
                             </select>
                         </div>
@@ -38,15 +39,12 @@
                             </select>
                         </div>
                         <div class="layui-btn-container">
-                            <button type="submit" class="layui-btn layui-btn">
+                            <button type="submit" class="layui-btn layui-btn" lay-submit lay-filter="*">
                                 <i class="layui-icon layui-icon-release" style="font-size: 25px; color: whitesmoke"></i>
                             </button>
                         </div>
                     </div>
                 </form>
-                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-                    <legend>评估结果</legend>
-                </fieldset>
             </div>
         </div>
     </div>
@@ -60,8 +58,36 @@
             form = layui.form,
             $ = layui.$;
 
+        form.on('submit(*)', function(data){
+            var subject = data.field.subject
+            var resource = data.field.resource
+            var privilege = data.field.privilege
+            if(subject!=="" && resource!=="" && privilege!==""){
+                $.ajax({
+                    url: "/api/v1/search/policy"
+                    ,type: "get"
+                    ,dataType: 'json'
+                    ,data:{
+                        subject: subject,
+                        resource: resource,
+                        privilege: privilege
+                    }
+                    ,success: function (data) {
+                        var msg = "deny"
+                        if(data){
+                            msg = "allow"
+                        }
+                        layer.alert(msg)
+                    }
+                });
+            } else {
+                layer.msg("评估信息不完整")
+            }
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
         $.ajax({
-            url:"/search/subList",
+            url:"/api/v1/search/subList",
             type: "get",
             dataType: 'json',
             data:{
@@ -75,10 +101,10 @@
                     privileges = data.privileges;
 
                 for(var i=0; i< users.length; i++){
-                    $('#user-role').append(new Option(users[i].name, users[i].name))
+                    $('#subject').append(new Option(users[i].name, users[i].name))
                 }
                 for(var i=0; i< roles.length; i++){
-                    $('#user-role').append(new Option(roles[i].name, roles[i].name))
+                    $('#subject').append(new Option(roles[i].name, roles[i].name))
                 }
                 for(var i=0; i< resources.length; i++){
                     $('#resource').append(new Option(resources[i].name, resources[i].name))

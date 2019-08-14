@@ -40,4 +40,7 @@ public class Admin {
     @Column
     private String personalDescription;
 
+    @Column
+    private String roles;
+
 }

@@ -8,15 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.thymeleaf.templateparser.raw.RawTemplateParser;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 @Controller
+@RequestMapping(value = "/api/v1/relation")
 public class RelationController {
 
     private Logger logger = LoggerFactory.getLogger(RelationController.class);
@@ -24,7 +25,12 @@ public class RelationController {
     @Autowired
     private Enforcer enforcer;
 
-    @GetMapping(value = "/relation/show")
+    @GetMapping(value = {"/",""})
+    public String relation(){
+        return "relation/relation";
+    }
+
+    @GetMapping(value = "/show")
     @ResponseBody
     public Rtree relationShip(@RequestParam(value = "subject") String subject){
         List<List<String>> permissions = null;

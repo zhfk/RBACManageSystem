@@ -43,7 +43,7 @@
             $ = layui.$;
 
         $.ajax({
-        url:"/search/subList",
+        url:"/api/v1/search/subList",
         type: "get",
         dataType: 'json',
         data:{
@@ -205,7 +205,7 @@
     form.on('select(user-role)', function(data){
         $.ajax(
             {
-                url:"/relation/show",
+                url:"/api/v1/relation/show",
                 type: "get",
                 dataType: 'json',
                 data:{

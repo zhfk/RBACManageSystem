@@ -16,22 +16,22 @@
                         </a>
                         <dl class="layui-nav-child">
                             <dd>
-                                <a th:href="@{/manage/user}">
+                                <a th:href="@{/api/v1/manage/user}">
                                     <i class="layui-icon layui-icon-user"></i>&nbsp;&nbsp;&nbsp;用户管理
                                 </a>
                             </dd>
                             <dd>
-                                <a th:href="@{/manage/role}">
+                                <a th:href="@{/api/v1/manage/role}">
                                     <i class="layui-icon layui-icon-username"></i>&nbsp;&nbsp;&nbsp;角色管理
                                 </a>
                             </dd>
                             <dd>
-                                <a th:href="@{/manage/resource}">
+                                <a th:href="@{/api/v1/manage/resource}">
                                     <i class="layui-icon layui-icon-component"></i>&nbsp;&nbsp;&nbsp;资源管理
                                 </a>
                             </dd>
                             <dd>
-                                <a th:href="@{/manage/privilege}">
+                                <a th:href="@{/api/v1/manage/privilege}">
                                     <i class="layui-icon layui-icon-vercode"></i>&nbsp;&nbsp;&nbsp;权限管理
                                 </a>
                             </dd>
@@ -43,15 +43,10 @@
                         </a>
                         <dl class="layui-nav-child">
                             <dd>
-                                <a th:href="@{/manage/grant/user}">
+                                <a th:href="@{/api/v1/grant/}">
                                     <i class="layui-icon layui-icon-user" style="font-size: 15px; "></i>&nbsp;&nbsp;&nbsp;授权操作
                                 </a>
                             </dd>
-<!--                            <dd>-->
-<!--                                <a href="javascript:;">-->
-<!--                                    <i class="layui-icon layui-icon-username" style="font-size: 15px; "></i>&nbsp;&nbsp;&nbsp;绑定操作-->
-<!--                                </a>-->
-<!--                            </dd>-->
                         </dl>
                     </li>
                     <li class="layui-nav-item layui-nav-itemed">
@@ -69,40 +64,11 @@
                             </dd>
                         </dl>
                     </li>
-                    <li class="layui-nav-item"><a href="javascript:;">模型展示</a>
+                    <li class="layui-nav-item layui-nav-itemed"><a href="javascript:;">模型展示</a>
                         <dl class="layui-nav-child">
                             <dd>
-                                <a href="javascript:;">ACL</a>
-                            </dd>
-                            <dd>
-                                <a href="javascript:;">ACL with superuser</a>
-                            </dd>
-                            <dd>
-                                <a href="javascript:;">ACL without users</a>
-                            </dd>
-                            <dd>
-                                <a href="javascript:;">ACL without resources</a>
-                            </dd>
-                            <dd>
-                                <a href="javascript:;">RBAC</a>
-                            </dd>
-                            <dd>
-                                <a href="javascript:;">RBAC with resource roles</a>
-                            </dd>
-                            <dd>
-                                <a href="javascript:;">RBAC with domains/tenants</a>
-                            </dd>
-                            <dd>
-                                <a href="javascript:;">ABAC</a>
-                            </dd>
-                            <dd>
-                                <a href="javascript:;">RESTful</a>
-                            </dd>
-                            <dd>
-                                <a href="javascript:;">Deny-override</a>
-                            </dd>
-                            <dd>
-                                <a href="javascript:;">Priority</a>
+                                <a href="javascript:;">
+                                    <i class="layui-icon layui-icon-util" style="font-size: 15px; "></i>&nbsp;&nbsp;&nbsp;RBAC</a>
                             </dd>
                         </dl>
                     </li>

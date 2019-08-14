@@ -8,16 +8,16 @@ import org.casbin.jcasbin.main.Enforcer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Controller
+@RequestMapping(value = "/api/v1/search")
 public class SearchController {
 
     @Autowired
@@ -35,7 +35,7 @@ public class SearchController {
     @Autowired
     private Enforcer enforcer;
 
-    @GetMapping(value = "/search/subList")
+    @GetMapping(value = "/subList")
     @ResponseBody
     public Map<String, List<Map<String, Object>>> getSearchCondList(
             @RequestParam(value = "conds")String conds){
@@ -55,13 +55,17 @@ public class SearchController {
         return map;
     }
 
-    @GetMapping(value = "/search/policy")
+    @GetMapping(value = "/policy")
     @ResponseBody
-    public void search(@RequestParam(value = "user")String user,
-                       @RequestParam(value = "role")String role,
-                       @RequestParam(value = "resource")String resource,
-                       @RequestParam(value = "privilege")String privilege){
-        System.out.println("user = [" + user + "], role = [" + role + "], resource = [" + resource + "], privilege = [" + privilege + "]");
+    public Boolean search(@RequestParam(value = "subject", defaultValue = "")String subject,
+                       @RequestParam(value = "resource", defaultValue = "")String resource,
+                       @RequestParam(value = "privilege", defaultValue = "")String privilege){
+        return enforcer.enforce(subject, resource, privilege);
+    }
+
+    @GetMapping(value = {"/",""})
+    public String search(){
+        return "search/search";
     }
 
 }

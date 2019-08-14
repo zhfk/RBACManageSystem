@@ -17,7 +17,7 @@
                 <fieldset class="layui-elem-field layui-field-title">
                     <legend>个人信息</legend>
                 </fieldset>
-                <form class="layui-form layui-form-pane" th:object="${admin}" th:action="@{/admin/update}"
+                <form class="layui-form layui-form-pane" th:object="${admin}" th:action="@{/api/v1/admin/update}"
                       method="post">
                     <div class="layui-form-item">
                         <label class="layui-form-label">用户ID</label>
@@ -41,7 +41,6 @@
                                    autocomplete="off" class="layui-input">
                         </div>
                         <div class="layui-text" style="color: red; font-size: medium"><strong>*</strong></div>
-
                     </div>
                     <div class="layui-form-item">
                         <div class="layui-inline">

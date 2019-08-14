@@ -41,8 +41,8 @@ public class PrivilegeServiceImpl implements PrivilegeService {
     }
 
     @Override
-    public Optional<Privilege> getPrivilegeByname(String name) {
-        return privilegeRepository.findPrivilegeByName(name);
+    public Optional<Privilege> getPrivilegeBynameAndResource(String resource, String name) {
+        return privilegeRepository.findPrivilegeByNameAndResource(resource, name);
     }
 
     @Override
@@ -73,6 +73,11 @@ public class PrivilegeServiceImpl implements PrivilegeService {
             }
         };
         return privilegeRepository.findAll(spec, PageRequest.of(page, limit, new Sort(Sort.Direction.DESC, "id")));
+    }
+
+    @Override
+    public List<Map<String, Object>> getAllname(String resource) {
+        return privilegeRepository.findAllName(resource);
     }
 
     @Override

@@ -2,29 +2,29 @@ package com.auth.rbac.controller;
 
 import com.auth.rbac.dao.Admin;
 import com.auth.rbac.service.AdminService;
-import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@Api("swagger ui 注释 Admin")
 @Controller
+@RequestMapping(value = "/api/v1/admin")
 public class AdminController {
 
     @Autowired
     private AdminService adminService;
 
-    @GetMapping(value = "/admin/info")
+    @GetMapping(value = "/info")
     public String getAdminInfo(ModelMap modelMap){
         Admin admin = adminService.getAdminInfo();
         modelMap.addAttribute("admin", admin);
         return "admin/admin";
     }
 
-    @PostMapping(value = "/admin/update")
+    @PostMapping(value = "/update")
     public String update(Admin admin, ModelMap modelMap){
         String pass = null;
         if(StringUtils.isEmpty(admin.getPassword())){
