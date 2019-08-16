@@ -23,6 +23,7 @@ git clone https://github.com/zhfk/RBACManageSystem.git
 ```$xslt
 rbacmaster:
   initAdminPassword: xxxx #初始密码
+spring:
   datasource:
     url: jdbc:mysql://xxxxx:3306/xxxx?characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false
     username: xxxx
