@@ -9,11 +9,8 @@
 
 ## 下一步
 
-1. Admin 策略
-1. dao唯name一约束
-1. 资源和权限表之间解耦合及约束关系
-1. 用户和组展示加前缀
-1. enforce API 外漏
+- 日志时间修正
+- 级联关系删除控制
 
 ## 部署
 ### 获取
@@ -24,6 +21,8 @@ git clone https://github.com/zhfk/RBACManageSystem.git
 ### 配置 application.yml mysql
 
 ```$xslt
+rbacmaster:
+  initAdminPassword: xxxx #初始密码
   datasource:
     url: jdbc:mysql://xxxxx:3306/xxxx?characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false
     username: xxxx
@@ -36,8 +35,7 @@ git clone https://github.com/zhfk/RBACManageSystem.git
     - username
     - password
     
-### mysql
-
+### 启动
 
 ```
 ./gradlew bootJar
@@ -46,6 +44,13 @@ java -jar xxx.jar
 ## 访问
 
 [localhost:8888](localhost:8888)
+
+## API
+提供了一个鉴权api
+```
+curl -X GET 'https://localhost:8888/enforce?subject=xxx&&resource=xxx&&privilege
+```
+其他API均需要验证信息
 
 首页:
 ![首页](页面1.png)
