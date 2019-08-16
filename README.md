@@ -49,8 +49,10 @@ java -jar xxx.jar
 ## API
 提供了一个鉴权api
 ```
-curl -X GET 'https://localhost:8888/enforce?subject=xxx&&resource=xxx&&privilege
+curl -X GET 'https://localhost:8888/enforce?subject=xxx&&resource=xxx&&privilege=xxxx
 ```
+返回值：true/false
+
 其他API均需要验证信息
 
 首页:
@@ -58,6 +60,9 @@ curl -X GET 'https://localhost:8888/enforce?subject=xxx&&resource=xxx&&privilege
 
 授权页:
 ![授权页](页面2.png)
+
+关系展示：
+![关系展示](页面3.png)
 
 ## 遇到的问题
 用jar包启动缺少model.conf文件？
