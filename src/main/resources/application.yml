@@ -1,12 +1,18 @@
 server:
   port: 8888
 
+rbacmaster:
+  initAdminPassword: winteriscoming
+
 spring:
   output.ansi.enabled: ALWAYS
   datasource:
     url: jdbc:mysql://localhost:3306/casbin?characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false
     username: root
     password:
+#    url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DB}?useSSL=FALSE&useUnicode=TRUE&characterEncoding=UTF-8&autoReconnect=TRUE&allowPublicKeyRetrieval=true
+#    username: ${MYSQL_USER}
+#    password: ${MYSQL_PWD}
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       maximum-pool-size: 20

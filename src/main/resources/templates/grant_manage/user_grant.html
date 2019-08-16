@@ -100,11 +100,11 @@
                     resources = data.resources;
 
                 for(var i=0; i< users.length; i++){
-                    $('#user-grant').append(new Option(users[i].name, users[i].name))
+                    $('#user-grant').append(new Option("用户："+users[i].name, users[i].name))
                     $('#user-bind').append(new Option(users[i].name, users[i].name))
                 }
                 for (var i=0; i< roles.length; i++){
-                    $('#user-grant').append(new Option(roles[i].name, roles[i].name))
+                    $('#user-grant').append(new Option("组："+roles[i].name, roles[i].name))
                 }
                 for(var i=0; i< resources.length; i++){
                     $('#resource-grant').append(new Option(resources[i].name, resources[i].name))

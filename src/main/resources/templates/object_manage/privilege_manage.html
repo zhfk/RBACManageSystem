@@ -72,7 +72,6 @@
                 {type:'checkbox',      fixed: 'left'},
                 {field:'id',           title:'ID' ,  fixed: 'left', sort: true},
                 {field:'name',         title:'名称', sort: true},
-                {field:'resource',     title:'所属资源', sort: true},
                 {field:'desc',  title:'备注'  },
                 {title:'操作',  width:150,  fixed:'right', align:'center', toolbar: '#row-tool-bar'}
             ]]
@@ -91,8 +90,6 @@
                     content: '/api/v1/manage/privilege/info?id='+data.id,
                     btn: ['确认'],
                     yes: function (index, layero) {
-                        var select = layer.getChildFrame('select', index);
-                        var resource = select[0].value;
                         var input = layer.getChildFrame('input', index);
                         var name = input[0].value;
                         var textarea = layer.getChildFrame('textarea', index);
@@ -113,7 +110,6 @@
                             data:{
                                 id: data.id,
                                 name: name,
-                                resource: resource,
                                 desc: desc
                             },
                             success:function(data){
@@ -151,7 +147,8 @@
                         url:"/api/v1/privilege/delete",
                         type:'delete',
                         data:{
-                            id: data.id
+                            id: data.id,
+                            name: data.name
                         },
                         success:function(data){
                             if(data.status === 'error'){
@@ -209,14 +206,17 @@
                         ,anim: 6
                         ,yes: function(index, layero){
                             var id = []
+                            var name = []
                             for(var i=0; i< data.length; i++){
                                 id.push(data[i].id)
+                                name.push(data[i].name)
                             }
                             $.ajax({
                                 url:"/api/v1/privilege/batchDelete",
                                 type:'delete',
                                 data:{
-                                    id: id.join(",")
+                                    id: id.join(","),
+                                    name: name.join(",")
                                 },
                                 success:function(data){
                                     if(data.status === 'error'){
@@ -267,8 +267,6 @@
                     content: '/api/v1/manage/add/privilege',
                     btn: ['确认'],
                     yes: function (index, layero) {
-                        var select = layer.getChildFrame('select', index);
-                        var resource = select[0].value
                         var input = layer.getChildFrame('input', index);
                         var name = input[0].value;
                         var desc = layer.getChildFrame('textarea', index);
@@ -287,7 +285,6 @@
                             url:"/api/v1/privilege/add",
                             type:'post',
                             data:{
-                                resource: resource,
                                 name: name,
                                 desc: description
                             },

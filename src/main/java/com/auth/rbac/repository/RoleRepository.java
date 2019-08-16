@@ -20,11 +20,11 @@ public interface RoleRepository extends PagingAndSortingRepository<Role, Integer
 
     @Transactional
     @Modifying
-    @Query("delete from Role where id in (:idList)")
+    @Query(value = "delete from role where id in (:idList)", nativeQuery = true)
     void deleteRoles(@Param(value = "idList") List<Integer> idList);
 
     Optional<Role> findRoleByName(@NotNull String name);
 
-    @Query("select id as id, name as name from Role")
+    @Query(value = "select id as id, name as name from role", nativeQuery = true)
     List<Map<String, Object>> findAllName();
 }

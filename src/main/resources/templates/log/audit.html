@@ -16,37 +16,7 @@
                 <fieldset class="layui-elem-field layui-field-title">
                     <legend>操作记录</legend>
                 </fieldset>
-                <ul class="layui-timeline">
-                    <li class="layui-timeline-item">
-                        <i class="layui-icon layui-timeline-axis"></i>
-                        <div class="layui-timeline-content layui-text">
-                            <div class="layui-timeline-title">2018年，layui 5.0 发布。并发展成为中国最受欢迎的前端UI框架（期望）</div>
-                        </div>
-                    </li>
-                    <li class="layui-timeline-item">
-                        <i class="layui-icon layui-timeline-axis"></i>
-                        <div class="layui-timeline-content layui-text">
-                            <div class="layui-timeline-title">2017年，layui 里程碑版本 2.0 发布</div>
-                        </div>
-                    </li>
-                    <li class="layui-timeline-item">
-                        <i class="layui-icon layui-timeline-axis"></i>
-                        <div class="layui-timeline-content layui-text">
-                            <div class="layui-timeline-title">2016年，layui 首个版本发布</div>
-                        </div>
-                    </li>
-                    <li class="layui-timeline-item">
-                        <i class="layui-icon layui-timeline-axis"></i>
-                        <div class="layui-timeline-content layui-text">
-                            <div class="layui-timeline-title">2015年，layui 孵化</div>
-                        </div>
-                    </li>
-                    <li class="layui-timeline-item">
-                        <i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop layui-timeline-axis"></i>
-                        <div class="layui-timeline-content layui-text">
-                            <div class="layui-timeline-title">更久前，轮子时代。维护几个独立组件：layer等</div>
-                        </div>
-                    </li>
+                <ul id="log-flow" class="layui-timeline">
                 </ul>
             </div>
         </div>
@@ -56,8 +26,44 @@
 <script th:src="@{/layui/layui.js}"></script>
 <script>
     //JavaScript代码区域
-    layui.use(['element'], function() {
-        var element = layui.element;
+    layui.use(['element', 'flow'], function() {
+        var element = layui.element,
+            $ = layui.jquery,
+            flow = layui.flow;
+
+        flow.load({
+            elem: '#log-flow'
+            ,done: function (page, next) {
+                var lis = [],
+                pageSize = 10;
+                $.ajax({
+                    url: '/api/v1/log/getPageRlog'
+                    ,type: "get"
+                    ,dataType: 'json'
+                    ,data: {
+                        page: page,
+                        limit: pageSize
+                    }
+                    , success: function (res) {
+                        layui.each(res.data, function (index, item) {
+                                lis.push('<li class="layui-timeline-item">'
+                                        +'<i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop layui-timeline-axis"></i>'
+                                            +'<div class="layui-timeline-content layui-text">'
+                                                +'<div class="layui-timeline-title">'
+                                                    + item.timestamp.substring(0,19).replace("T"," ") +'，'+item.user+'，'+item.action
+                                                +'</div>'
+                                            +'</div>'
+                                     +'</li>');
+                        });
+                        var pages = (res.count + pageSize - 1) / pageSize;
+                        //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
+                        //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
+                        next(lis.join(''), page < pages);
+                    }
+                })
+            }
+        });
+        flow.lazyimg();
     });
 </script>
 </body>

@@ -30,7 +30,6 @@
 </div>
 <script th:src="@{/layui/layui.js}"></script>
 <script>
-
     layui.config({
         base: '/layui/exts/' //假设这是你存放拓展模块的根目录
     }).extend({
@@ -55,10 +54,10 @@
                 roles = data.roles;
 
             for(var i=0; i< users.length; i++){
-                $('#user-role').append(new Option(users[i].name, users[i].name))
+                $('#user-role').append(new Option("用户："+users[i].name, users[i].name))
             }
             for(var i=0; i< roles.length; i++){
-                $('#user-role').append(new Option(roles[i].name, roles[i].name))
+                $('#user-role').append(new Option("组："+roles[i].name, roles[i].name))
             }
             layui.form.render("select");
         }
@@ -124,75 +123,81 @@
 
                 data: [
                     {
-                        name: '根节点',
+                        name: '用户节点',
                         value: 6,
                         children: [
                             {
-                                name: '节点1',
+                                name: '资源节点1',
                                 value: 4,
                                 children: [
                                     {
-                                        name: '叶子节点1',
+                                        name: '权限节点1',
                                         value: 4
                                     },
                                     {
-                                        name: '叶子节点2',
+                                        name: '权限节点2',
                                         value: 4
                                     },
                                     {
-                                        name: '叶子节点3',
+                                        name: '权限节点3',
                                         value: 2
                                     },
                                     {
-                                        name: '叶子节点4',
+                                        name: '权限节点4',
                                         value: 2
                                     },
                                     {
-                                        name: '叶子节点5',
+                                        name: '权限节点5',
                                         value: 2
                                     },
                                     {
-                                        name: '叶子节点6',
+                                        name: '权限节点6',
                                         value: 4
                                     }
                                 ]
                             },
                             {
-                                name: '节点2',
+                                name: '资源节点2',
                                 value: 4,
                                 children: [{
-                                    name: '叶子节点7',
+                                    name: '权限节点7',
                                     value: 4
                                 },
                                     {
-                                        name: '叶子节点8',
+                                        name: '权限节点8',
                                         value: 4
                                     }]
                             },
                             {
-                                name: '节点3',
+                                name: '组/角色节点3',
                                 value: 1,
                                 children: [
                                     {
-                                        name: '叶子节点9',
+                                        name: '权限节点9',
                                         value: 4
                                     },
                                     {
-                                        name: '叶子节点10',
+                                        name: '权限节点10',
                                         value: 4
                                     },
                                     {
-                                        name: '叶子节点11',
+                                        name: '权限节点11',
                                         value: 2
                                     },
                                     {
-                                        name: '叶子节点12',
+                                        name: '权限节点12',
                                         value: 2
                                     },
                                     {
-                                        name: '叶子节点13',
+                                        name: '权限节点13',
                                         value: 2
                                     }
+                                ]
+                            },
+                            {
+                                name: '组/角色节点4',
+                                value: 1,
+                                children: [
                                 ]
                             }
                         ]

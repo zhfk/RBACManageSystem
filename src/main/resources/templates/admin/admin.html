@@ -17,20 +17,19 @@
                 <fieldset class="layui-elem-field layui-field-title">
                     <legend>个人信息</legend>
                 </fieldset>
-                <form class="layui-form layui-form-pane" th:object="${admin}" th:action="@{/api/v1/admin/update}"
-                      method="post">
+                <form class="layui-form layui-form-pane" th:object="${admin}" th:action="@{/api/v1/admin/update}" method="post">
                     <div class="layui-form-item">
                         <label class="layui-form-label">用户ID</label>
                         <div class="layui-input-inline">
-                            <input type="text" th:field="*{id}" name="id" lay-verify="required" autocomplete="off"
-                                   class="layui-input layui-bg-gray" disabled>
+                            <input type="text" th:field="*{id}" name="id" autocomplete="off"
+                                   placeholder="1" class="layui-input layui-bg-gray" disabled>
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">用户名</label>
                         <div class="layui-input-inline">
-                            <input type="text" th:field="*{username}" name="username" lay-verify="required"
-                                   placeholder="请输入姓名" autocomplete="off" class="layui-input">
+                            <input type="text" th:field="*{username}" name="username"
+                                   placeholder="admin" autocomplete="off" class="layui-input" lay-verify="username" disabled>
                         </div>
                         <div class="layui-text" style="color: red; font-size: medium"><strong>*</strong></div>
                     </div>
@@ -38,7 +37,7 @@
                         <label class="layui-form-label">密码</label>
                         <div class="layui-input-inline">
                             <input type="password" th:field="*{password}" name="password" placeholder="********"
-                                   autocomplete="off" class="layui-input">
+                                   autocomplete="off" class="layui-input" lay-verify="password">
                         </div>
                         <div class="layui-text" style="color: red; font-size: medium"><strong>*</strong></div>
                     </div>
@@ -116,6 +115,7 @@
         var element = layui.element,
             laydate = layui.laydate,
             $ = layui.$,
+            form = layui.form,
             cityPicker = layui.citypicker;
 
         //执行一个laydate实例

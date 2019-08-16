@@ -20,11 +20,11 @@ public interface UserRepository extends PagingAndSortingRepository<User, Integer
 
     @Transactional
     @Modifying
-    @Query("delete from User where id in (:idList)")
+    @Query(value = "delete from user where id in (:idList)", nativeQuery = true)
     void deleteUsers(@Param(value = "idList") List<Integer> idList);
 
     Optional<User> findUserByUsername(@NotNull String username);
 
-    @Query("select id as id, username as name from User")
+    @Query(value = "select id as id, username as name from user", nativeQuery = true)
     List<Map<String, Object>> findAllUsername();
 }

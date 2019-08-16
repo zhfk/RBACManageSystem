@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet" />
+    <link th:href="@{/main.css}" rel="stylesheet" />
+    <title>搜索</title>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+    <div th:include="header.html :: header"></div>
+    <div th:include="left.html :: left"></div>
+    <div class="layui-body layui-tab-content site-demo site-demo-body">
+        <div class="layui-tab-item layui-show">
+            <div class="layui-main">
+                <blockquote class="layui-elem-quote layui-text">
+                    用户既可以单独操作某个权限，也可以通过加入组(授予角色)获取权限
+                </blockquote>
+                <div class="layui-container">
+                    <div class="layui-col-md6">
+                        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                            <legend>资源权限分配</legend>
+                        </fieldset>
+                        <form class="layui-form">
+                            <div class="layui-form-item">
+                                <div class="layui-input-inline">
+                                    <select id="resource-bind" name="resource" lay-filter="listResource" lay-search>
+                                        <option value="" selected>资源(*)</option>
+                                    </select>
+                                </div>
+                                <div class="layui-btn-container">
+                                    <button type="submit" class="layui-btn layui-btn" lay-submit lay-filter="list-privilege">
+                                        <i class="layui-icon layui-icon-search" style="font-size: 25px; color: whitesmoke"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+                            <legend>分配权限</legend>
+                        </fieldset>
+                        <div id="resource-privilege-bind" class="layui-trans"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:include="footer.html :: footer"></div>
+</div>
+<script th:src="@{/layui/layui.js}"></script>
+<script>
+    //JavaScript代码区域
+    layui.use(['element', 'form','transfer', 'layer', 'util'], function() {
+        var element = layui.element,
+            form = layui.form,
+            $ = layui.$,
+            transfer = layui.transfer,
+            layer = layui.layer,
+            util = layui.util;
+
+        $.ajax({
+            url:"/api/v1/search/subList",
+            type: "get",
+            dataType: 'json',
+            data:{
+                conds: "resources"
+            },
+            success:function(data){
+
+                var resources = data.resources;
+
+                for(var i=0; i< resources.length; i++){
+                    $('#resource-bind').append(new Option(resources[i].name, resources[i].name))
+                }
+                layui.form.render("select");
+            }
+        })
+
+        //监听用户绑定form 按钮
+        form.on('submit(list-privilege)',function (data) {
+            var resource = data.field.resource;
+            if(resource === ""){
+                layer.msg("请选择资源");
+                return false;
+            }else {
+                $.ajax({
+                    url: "/api/v1/resource/privilege",
+                    type: "get",
+                    dataType:'json',
+                    data:{
+                        resource: resource
+                    },
+                    success: function (data) {
+                        var transferData = []
+                        var value = []
+
+                        var binded = data.binded,
+                            all = data.all;
+
+                        for(var i=0;i< all.length; i++){
+                            transferData.push({ "value": all[i] , "title": all[i]})
+                        }
+                        for(var j=0; j < binded.length; j++){
+                            value.push(binded[j])
+                        }
+
+                        transfer.render({
+                            elem: '#resource-privilege-bind'
+                            ,data: transferData
+                            ,value: value
+                            ,title: ['候选', '已分配']
+                            ,showSearch: true
+                            ,id: 'resource-privilege-bind' //定义索引
+                            ,onchange: function(data, index){
+                                var resource = $("#resource-bind").val()
+                                var privileges = []
+                                for(var j=0; j< data.length; j++){
+                                    privileges.push(data[j].value)
+                                }
+                                if(resource!==""){
+                                    var url = ""
+                                    var msg = ""
+                                    if(index===0) {
+                                        url = "/api/v1/resource/bind"
+                                        msg = "绑定"
+                                    }else {
+                                        url = "/api/v1/resource/unbind"
+                                        msg = "解绑"
+                                    }
+                                    $.ajax({
+                                        url: url,
+                                        type: "post",
+                                        dataType:'json',
+                                        traditional: true,
+                                        data:{
+                                            resource: resource,
+                                            privileges: privileges
+                                        },
+                                        success: function (data) {
+                                            layer.msg(msg+"成功")
+                                        }
+                                    });
+                                }else{
+                                    layer.msg("请选择用户")
+                                }
+                            }
+                        })
+                    }
+                });
+                return false;
+            }
+        });
+
+    });
+</script>
+</body>
+</html>

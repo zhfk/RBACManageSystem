@@ -1,17 +1,18 @@
 package com.auth.rbac.controller;
 
-import com.auth.rbac.service.PrivilegeService;
-import com.auth.rbac.service.ResourceService;
-import com.auth.rbac.service.RoleService;
-import com.auth.rbac.service.UserService;
+import com.auth.rbac.dao.RLog;
+import com.auth.rbac.service.*;
 import org.casbin.jcasbin.main.Enforcer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +36,9 @@ public class SearchController {
     @Autowired
     private Enforcer enforcer;
 
+    @Autowired
+    private RLogService rLogService;
+
     @GetMapping(value = "/subList")
     @ResponseBody
     public Map<String, List<Map<String, Object>>> getSearchCondList(
@@ -57,10 +61,13 @@ public class SearchController {
 
     @GetMapping(value = "/policy")
     @ResponseBody
-    public Boolean search(@RequestParam(value = "subject", defaultValue = "")String subject,
-                       @RequestParam(value = "resource", defaultValue = "")String resource,
-                       @RequestParam(value = "privilege", defaultValue = "")String privilege){
-        return enforcer.enforce(subject, resource, privilege);
+    public Boolean search(@AuthenticationPrincipal UserDetails userDetails,
+                          @RequestParam(value = "subject", defaultValue = "")String subject,
+                          @RequestParam(value = "resource", defaultValue = "")String resource,
+                          @RequestParam(value = "privilege", defaultValue = "")String privilege){
+
+        rLogService.save(new RLog(userDetails.getUsername(), "权限验证："+subject+"->"+resource+"->"+privilege, new Timestamp(System.currentTimeMillis()), ""));
+        return enforcer.enforce(subject.toLowerCase(), resource.toLowerCase(), privilege.toLowerCase());
     }
 
     @GetMapping(value = {"/",""})

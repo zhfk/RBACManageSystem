@@ -180,7 +180,8 @@
                         url:"/api/v1/user/delete",
                         type:'delete',
                         data:{
-                            id: data.id
+                            id: data.id,
+                            name: data.name
                         },
                         success:function(data){
                             if(data.status === 'error'){
@@ -246,14 +247,17 @@
                         ,anim: 6
                         ,yes: function(index, layero){
                             var id = []
+                            var name = []
                             for(var i=0; i< data.length; i++){
                                 id.push(data[i].id)
+                                name.push(data[i].name)
                             }
                             $.ajax({
                                 url:"/api/v1/user/batchDelete",
                                 type:'delete',
                                 data:{
-                                    id: id.join(",")
+                                    id: id.join(","),
+                                    name: name.join(",")
                                 },
                                 success:function(data){
                                     if(data.status === 'error'){

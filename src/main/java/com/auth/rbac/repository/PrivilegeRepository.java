@@ -1,6 +1,7 @@
 package com.auth.rbac.repository;
 
 import com.auth.rbac.dao.Privilege;
+import com.auth.rbac.dao.Resource;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -20,15 +21,15 @@ public interface PrivilegeRepository extends PagingAndSortingRepository<Privileg
 
     @Transactional
     @Modifying
-    @Query(value = "delete from Privilege where id in (:idList)", nativeQuery = true)
+    @Query(value = "delete from privilege where id in (:idList)", nativeQuery = true)
     void deletePrivileges(@Param(value = "idList") List<Integer> idList);
 
-    @Query(value = "select id as id, `name` as `name`, resource as resource, `desc` as `desc` from Privilege where resource=:resource and `name`=:name ", nativeQuery = true)
-    Optional<Privilege> findPrivilegeByNameAndResource(@Param(value = "resource") String resource, @Param(value = "name") String name);
-
-    @Query(value = "select id as id, name as name from Privilege where resource=:resource", nativeQuery = true)
+    @Query(value = "select id as id, name as name from privilege where resource=:resource", nativeQuery = true)
     List<Map<String, Object>> findAllName(@Param(value = "resource") String resource);
 
-    @Query(value = "select id as id, name as name from Privilege ", nativeQuery = true)
+    @Query(value = "select id as id, name as name from privilege ", nativeQuery = true)
     List<Map<String, Object>> findAllName();
+
+    Optional<Privilege> findPrivilegeByName(@NotNull String name);
+
 }

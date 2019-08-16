@@ -122,10 +122,7 @@ public class ObjectManageController {
     @GetMapping(value = "/privilege/info")
     public String managePrivilegeInfo(@RequestParam(value = "id") int id, ModelMap modelMap) {
         Privilege privilege = privilegeService.getPrivilegeById(id);
-        List<String> resources = resourceService.getNames();
         modelMap.addAttribute("privilege", privilege);
-        modelMap.addAttribute("resources", resources);
-        modelMap.addAttribute("curres", privilege.getResource());
         return "privilege/privilege_info";
     }
 

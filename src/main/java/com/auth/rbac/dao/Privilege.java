@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
+@Table(uniqueConstraints=@UniqueConstraint(columnNames="name"))
 public class Privilege {
 
     @Id
@@ -16,10 +17,6 @@ public class Privilege {
     @NotNull
     @Column(name = "`name`")
     private String name;
-
-    @NotNull
-    @Column(name = "`resource`")
-    private String resource;
 
     @Column(name = "`desc`")
     private String desc;

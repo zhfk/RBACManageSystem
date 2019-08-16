@@ -10,6 +10,7 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 repositories {
+	mavenLocal()
 	mavenCentral()
 }
 
@@ -22,8 +23,12 @@ dependencies {
 	implementation 'org.casbin:jcasbin:1.4.0'
 	runtime 'mysql:mysql-connector-java:8.0.17'
 	compile 'com.alibaba:fastjson:1.2.58'
+	annotationProcessor 'org.projectlombok:lombok:1.18.8'
+	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 	compileOnly 'org.projectlombok:lombok:1.18.8'
 	implementation 'org.springframework.boot:spring-boot-devtools'
 	implementation 'org.springframework.boot:spring-boot-starter-logging'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
+
+compileJava.dependsOn(processResources)

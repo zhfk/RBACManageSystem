@@ -41,11 +41,6 @@ public class PrivilegeServiceImpl implements PrivilegeService {
     }
 
     @Override
-    public Optional<Privilege> getPrivilegeBynameAndResource(String resource, String name) {
-        return privilegeRepository.findPrivilegeByNameAndResource(resource, name);
-    }
-
-    @Override
     public Privilege getPrivilegeById(Integer id) {
         Privilege Privilege = null;
         Optional<Privilege> optionalPrivilege = privilegeRepository.findById(id);
@@ -76,12 +71,13 @@ public class PrivilegeServiceImpl implements PrivilegeService {
     }
 
     @Override
-    public List<Map<String, Object>> getAllname(String resource) {
-        return privilegeRepository.findAllName(resource);
-    }
-
-    @Override
     public List<Map<String, Object>> getAllname() {
         return privilegeRepository.findAllName();
     }
+
+    @Override
+    public Optional<Privilege> getPrivilegeByName(String name) {
+        return privilegeRepository.findPrivilegeByName(name);
+    }
+
 }

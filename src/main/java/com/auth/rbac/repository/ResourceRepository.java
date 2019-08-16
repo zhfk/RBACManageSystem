@@ -20,14 +20,14 @@ public interface ResourceRepository extends PagingAndSortingRepository<Resource,
 
     @Transactional
     @Modifying
-    @Query("delete from Resource where id in (:idList)")
+    @Query(value = "delete from resource where id in (:idList)", nativeQuery = true)
     void deleteResources(@Param(value = "idList") List<Integer> idList);
 
     Optional<Resource> findResourceByName(@NotNull String name);
 
-    @Query("select id as id, name as name from Resource ")
+    @Query(value = "select id as id, name as name from resource ", nativeQuery = true)
     List<Map<String, Object>> findAllName();
 
-    @Query("select name as name from Resource ")
+    @Query(value = "select name as name from resource ", nativeQuery = true)
     List<String> findNames();
 }

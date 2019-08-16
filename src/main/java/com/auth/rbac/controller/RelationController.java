@@ -1,21 +1,23 @@
 package com.auth.rbac.controller;
 
+import com.auth.rbac.dao.RLog;
 import com.auth.rbac.dao.Rtree;
+import com.auth.rbac.service.RLogService;
 import org.casbin.jcasbin.main.Enforcer;
-import org.hibernate.hql.internal.CollectionSubqueryFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,6 +32,9 @@ public class RelationController {
     @Autowired
     private Enforcer enforcer;
 
+    @Autowired
+    private RLogService rLogService;
+
     @GetMapping(value = {"/",""})
     public String relation(){
         return "relation/relation";
@@ -37,7 +42,9 @@ public class RelationController {
 
     @GetMapping(value = "/show")
     @ResponseBody
-    public Rtree relationShip(@RequestParam(value = "subject") String subject){
+    public Rtree relationShip(@AuthenticationPrincipal UserDetails userDetails,
+                              @RequestParam(value = "subject") String subject){
+        rLogService.save(new RLog(userDetails.getUsername(), "查看"+subject+"关系", new Timestamp(System.currentTimeMillis()), ""));
         //获取用户permission
         List<List<String>> permissions = new ArrayList<>();
         try {

@@ -5,8 +5,9 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Entity
 @Data
+@Entity
+@Table(uniqueConstraints=@UniqueConstraint(columnNames="username"))
 public class Admin {
 
     @Id
