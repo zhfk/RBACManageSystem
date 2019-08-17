@@ -67,7 +67,7 @@ curl -X GET 'https://localhost:8888/enforce?subject=xxx&&resource=xxx&&privilege
 ## 遇到的问题
 用jar包启动缺少model.conf文件？
 ```$xslt
-这是由于casbin本身代码设计缺陷，可能是作者没有考虑到在jar包中资源文件定位问题
+可能是作者没有考虑到在jar包中资源文件定位问题，
 解决办法:
     java -Dspring.casbin.model=/path/to/model.conf -jar xxx.jar
     用jvm -D参数指定变量就可以了
