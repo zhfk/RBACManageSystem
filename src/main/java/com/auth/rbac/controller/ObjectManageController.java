@@ -8,6 +8,9 @@ import com.auth.rbac.service.PrivilegeService;
 import com.auth.rbac.service.ResourceService;
 import com.auth.rbac.service.RoleService;
 import com.auth.rbac.service.UserService;
+import org.casbin.jcasbin.main.Enforcer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,6 +24,8 @@ import java.util.List;
 @RequestMapping(value = "/api/v1/manage")
 public class ObjectManageController {
 
+    private Logger logger = LoggerFactory.getLogger(ObjectManageController.class);
+
     @Autowired
     private UserService userService;
 
@@ -32,6 +37,9 @@ public class ObjectManageController {
 
     @Autowired
     private PrivilegeService privilegeService;
+
+    @Autowired
+    private Enforcer enforcer;
 
 
     /**
@@ -45,8 +53,19 @@ public class ObjectManageController {
     }
 
     @GetMapping(value = "/relation/user")
-    public String manageRelationUser(@RequestParam(value = "userId") String userId, ModelMap modelMap) {
+    public String manageRelationUser(@RequestParam(value = "userId") String userId,
+                                     @RequestParam(value = "username") String username,
+                                     ModelMap modelMap) {
         modelMap.addAttribute("userId", userId);
+        modelMap.addAttribute("username", username);
+        String roles="";
+        try{
+            roles = enforcer.getRolesForUser(username).toString();
+            modelMap.addAttribute("roles", roles);
+        }catch (Exception e){
+            logger.warn(e.getMessage());
+        }
+        modelMap.addAttribute("roles", roles);
         return "relation/user_relation_iframe";
     }
 

@@ -6,40 +6,35 @@
     <title>用户关系展示</title>
 </head>
 <body>
-    <div class="layui-body layui-tab-content site-demo site-demo-body">
-        <div class="layui-tab-item layui-show">
-            <div class="layui-main">
-                <div class="layui-text">hello, <span th:text="${userId}"></span> !</div>
-                <div id="user-relation-tree"></div>
-            </div>
+    <div class="layui-container">
+        <div class="layui-main">
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>用户信息</legend>
+            </fieldset>
+            <form class="layui-form layui-form-pane" style="width: 720px">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="username" autocomplete="off"
+                               th:value="${username}" class="layui-input" disabled>
+                    </div>
+                    <div class="layui-text" style="color: red; font-size: medium"><strong>*</strong></div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">已加入的组</label>
+                    <div class="layui-input-block">
+                        <textarea th:text="${roles}" name="roles" placeholder="未加入任何组" class="layui-textarea" disabled></textarea>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
+</body>
 <script th:src="@{/layui/layui.js}"></script>
 <script>
     //JavaScript代码区域
-    layui.use(['element', 'tree'], function() {
-        var element = layui.element,
-            tree = layui.tree;
-        //渲染
-        tree.render({
-            elem: '#user-relation-tree'  //绑定元素
-            ,data: [{
-                title: '江西' //一级菜单
-                ,children: [{
-                    title: '南昌' //二级菜单
-                    ,children: [{
-                        title: '高新区' //三级菜单
-                        //…… //以此类推，可无限层级
-                    }]
-                }]
-            },{
-                title: '陕西' //一级菜单
-                ,children: [{
-                    title: '西安' //二级菜单
-                }]
-            }]
-        });
+    layui.use(['element'], function() {
+        var element = layui.element
     });
 </script>
-</body>
 </html>

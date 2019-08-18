@@ -21,14 +21,14 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">用户ID</label>
                         <div class="layui-input-inline">
-                            <input type="text" th:field="*{id}" name="id" autocomplete="off"
+                            <input type="text" th:value="*{id}" name="id" autocomplete="off"
                                    placeholder="1" class="layui-input layui-bg-gray" disabled>
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">用户名</label>
                         <div class="layui-input-inline">
-                            <input type="text" th:field="*{username}" name="username"
+                            <input type="text" th:value="*{username}" name="username"
                                    placeholder="admin" autocomplete="off" class="layui-input" lay-verify="username" disabled>
                         </div>
                         <div class="layui-text" style="color: red; font-size: medium"><strong>*</strong></div>
@@ -36,7 +36,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">密码</label>
                         <div class="layui-input-inline">
-                            <input type="password" th:field="*{password}" name="password" placeholder="********"
+                            <input type="password" th:value="*{password}" name="password" placeholder="********"
                                    autocomplete="off" class="layui-input" lay-verify="password">
                         </div>
                         <div class="layui-text" style="color: red; font-size: medium"><strong>*</strong></div>
@@ -53,14 +53,14 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">爱好</label>
                         <div class="layui-input-block">
-                            <input type="text" th:field="*{hobby}" name="hobby" placeholder="凉皮、沙拉、柠檬茶、... --吃，我所欲也！"
+                            <input type="text" th:value="*{hobby}" name="hobby" placeholder="凉皮、沙拉、柠檬茶、... --吃，我所欲也！"
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">名言</label>
                         <div class="layui-input-block">
-                            <input type="text" th:field="*{aphorism}" name="aphorism"
+                            <input type="text" th:value="*{aphorism}" name="aphorism"
                                    placeholder="别和我谈梦想，我的梦想就每天收租 . . ." autocomplete="off" class="layui-input">
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">休闲时光</label>
                         <div class="layui-input-block">
-                            <input type="text" th:field="*{forSpareTime}" name="forSpareTime"
+                            <input type="text" th:value="*{forSpareTime}" name="forSpareTime"
                                    placeholder="逛B站、刷抖音、阅读、快手、游戏、美剧、写作 ..." autocomplete="off" class="layui-input">
                         </div>
                     </div>
